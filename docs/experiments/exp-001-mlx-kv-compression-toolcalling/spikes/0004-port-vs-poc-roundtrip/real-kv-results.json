@@ -1,0 +1,49 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "layer_inspected": 0,
+  "prompt_tokens": 86,
+  "real_K_stats": {
+    "shape": [
+      1,
+      4,
+      256,
+      128
+    ],
+    "mean": 0.445884644985199,
+    "std": 15.482068061828613,
+    "max_abs": 171.625,
+    "per_head_std": [
+      23.838436126708984,
+      14.438624382019043,
+      12.191012382507324,
+      5.646341323852539
+    ]
+  },
+  "real_V_stats": {
+    "shape": [
+      1,
+      4,
+      256,
+      128
+    ],
+    "mean": 0.001954581355676055,
+    "std": 0.13369320333003998,
+    "max_abs": 2.166015625
+  },
+  "polar_quant_bits": 3,
+  "polar_quant_seed": 42,
+  "reconstruction_real_K": {
+    "mse": 7.718708,
+    "max_abs": 26.2401,
+    "per_row_cos": 0.3307
+  },
+  "reconstruction_real_V": {
+    "mse": 0.000593,
+    "max_abs": 0.2389,
+    "per_row_cos": 0.3301
+  },
+  "reconstruction_synthetic_reference": {
+    "per_row_cos": 0.98267,
+    "mse": 0.0727
+  }
+}

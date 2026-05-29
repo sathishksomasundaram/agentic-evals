@@ -1,0 +1,41 @@
+model_id,prompt_label,config,buffer_size,verdict,time_s,peak_mem_gb,prompt_tokens,label,error,run_timestamp
+mlx-community/Qwen2.5-7B-Instruct-4bit,short,baseline,,PASS,0.729,4.595,189,short_baseline,,
+mlx-community/Qwen2.5-7B-Instruct-4bit,short,tq_ratio_0.5,94,PASS,0.687,4.595,189,short_tq_K3V2_ratio0.5_buf94,,
+mlx-community/Qwen2.5-7B-Instruct-4bit,short,tq_ratio_1.0,189,PASS,0.652,4.607,189,short_tq_K3V2_ratio1.0_buf189,,
+mlx-community/Qwen2.5-7B-Instruct-4bit,long,baseline,,LOST_FORMAT,3.244,5.105,1966,long_baseline,,
+mlx-community/Qwen2.5-7B-Instruct-4bit,long,tq_ratio_0.5,983,LOST_FORMAT,5.374,5.093,1966,long_tq_K3V2_ratio0.5_buf983,,
+mlx-community/Qwen2.5-7B-Instruct-4bit,long,tq_ratio_1.0,1966,PASS,2.924,5.16,1966,long_tq_K3V2_ratio1.0_buf1966,,
+mlx-community/Llama-3.2-3B-Instruct-4bit,,,,,,,,,ImportError: cannot import name 'turboquant_value_weighted_sum_metal' from 'turboquant_mac.backends.metal_kernels' (/Users/sathishksoman/Dev/My Workspace/Personal/agentic-ai/agent-workbench/open-model-benchmark/.venv/lib/python3.12/site-packages/turboquant_mac/backends/metal_kernels.py),
+mlx-community/Qwen3-4B-Instruct-2507-6bit,,,,,,,,,ImportError: cannot import name 'turboquant_value_weighted_sum_metal' from 'turboquant_mac.backends.metal_kernels' (/Users/sathishksoman/Dev/My Workspace/Personal/agentic-ai/agent-workbench/open-model-benchmark/.venv/lib/python3.12/site-packages/turboquant_mac/backends/metal_kernels.py),
+mlx-community/DeepSeek-R1-Distill-Qwen-7B-4bit,short,baseline,,LOST_FORMAT,3.499,4.589,182,short_baseline,,
+mlx-community/DeepSeek-R1-Distill-Qwen-7B-4bit,short,tq_ratio_0.5,91,LOST_FORMAT,2.989,4.589,182,short_tq_K3V2_ratio0.5_buf91,,
+mlx-community/DeepSeek-R1-Distill-Qwen-7B-4bit,short,tq_ratio_1.0,182,LOST_FORMAT,2.94,4.604,182,short_tq_K3V2_ratio1.0_buf182,,
+mlx-community/DeepSeek-R1-Distill-Qwen-7B-4bit,long,baseline,,LOST_FORMAT,5.411,5.108,1959,long_baseline,,
+mlx-community/DeepSeek-R1-Distill-Qwen-7B-4bit,long,tq_ratio_0.5,980,LOST_FORMAT,5.366,5.093,1959,long_tq_K3V2_ratio0.5_buf980,,
+mlx-community/DeepSeek-R1-Distill-Qwen-7B-4bit,long,tq_ratio_1.0,1959,PASS,5.446,5.158,1959,long_tq_K3V2_ratio1.0_buf1959,,
+mlx-community/Phi-4-mini-instruct-4bit,,,,,,,,,ImportError: cannot import name 'turboquant_value_weighted_sum_metal' from 'turboquant_mac.backends.metal_kernels' (/Users/sathishksoman/Dev/My Workspace/Personal/agentic-ai/agent-workbench/open-model-benchmark/.venv/lib/python3.12/site-packages/turboquant_mac/backends/metal_kernels.py),
+mlx-community/gemma-3-4b-it-4bit,,,,,,,,,ImportError: cannot import name 'turboquant_value_weighted_sum_metal' from 'turboquant_mac.backends.metal_kernels' (/Users/sathishksoman/Dev/My Workspace/Personal/agentic-ai/agent-workbench/open-model-benchmark/.venv/lib/python3.12/site-packages/turboquant_mac/backends/metal_kernels.py),
+mlx-community/Llama-3.2-3B-Instruct-4bit,short,baseline,,PASS,0.413,2.235,212,short_baseline,,2026-05-27T21:45:15
+mlx-community/Llama-3.2-3B-Instruct-4bit,short,tq_ratio_0.5,106,OTHER,1.556,2.249,212,short_tq_K3V2_ratio0.5_buf106,,2026-05-27T21:45:15
+mlx-community/Llama-3.2-3B-Instruct-4bit,short,tq_ratio_1.0,212,PASS,0.357,2.282,212,short_tq_K3V2_ratio1.0_buf212,,2026-05-27T21:45:15
+mlx-community/Llama-3.2-3B-Instruct-4bit,long,baseline,,LOST_FORMAT,2.771,2.97,1988,long_baseline,,2026-05-27T21:45:15
+mlx-community/Llama-3.2-3B-Instruct-4bit,long,tq_ratio_0.5,994,OTHER,1.257,2.937,1988,long_tq_K3V2_ratio0.5_buf994,,2026-05-27T21:45:15
+mlx-community/Llama-3.2-3B-Instruct-4bit,long,tq_ratio_1.0,1988,PASS,1.906,3.048,1988,long_tq_K3V2_ratio1.0_buf1988,,2026-05-27T21:45:15
+mlx-community/Qwen3-4B-Instruct-2507-6bit,short,baseline,,PASS,0.629,3.649,189,short_baseline,,2026-05-27T21:45:26
+mlx-community/Qwen3-4B-Instruct-2507-6bit,short,tq_ratio_0.5,94,PASS,2.617,3.649,189,short_tq_K3V2_ratio0.5_buf94,,2026-05-27T21:45:26
+mlx-community/Qwen3-4B-Instruct-2507-6bit,short,tq_ratio_1.0,189,PASS,0.551,3.681,189,short_tq_K3V2_ratio1.0_buf189,,2026-05-27T21:45:26
+mlx-community/Qwen3-4B-Instruct-2507-6bit,long,baseline,,LOST_FORMAT,4.266,4.313,1966,long_baseline,,2026-05-27T21:45:26
+mlx-community/Qwen3-4B-Instruct-2507-6bit,long,tq_ratio_0.5,983,LOST_FORMAT,4.351,4.282,1966,long_tq_K3V2_ratio0.5_buf983,,2026-05-27T21:45:26
+mlx-community/Qwen3-4B-Instruct-2507-6bit,long,tq_ratio_1.0,1966,LOST_FORMAT,2.072,4.453,1966,long_tq_K3V2_ratio1.0_buf1966,,2026-05-27T21:45:26
+mlx-community/Phi-4-mini-instruct-4bit,short,baseline,,PASS,0.477,2.591,178,short_baseline,,2026-05-27T21:45:42
+mlx-community/Phi-4-mini-instruct-4bit,short,tq_ratio_0.5,89,OTHER,1.938,2.637,178,short_tq_K3V2_ratio0.5_buf89,,2026-05-27T21:45:42
+mlx-community/Phi-4-mini-instruct-4bit,short,tq_ratio_1.0,178,PASS,0.417,2.666,178,short_tq_K3V2_ratio1.0_buf178,,2026-05-27T21:45:42
+mlx-community/Phi-4-mini-instruct-4bit,long,baseline,,OTHER,3.225,3.817,1965,long_baseline,,2026-05-27T21:45:42
+mlx-community/Phi-4-mini-instruct-4bit,long,tq_ratio_0.5,982,OTHER,3.089,3.787,1965,long_tq_K3V2_ratio0.5_buf982,,2026-05-27T21:45:42
+mlx-community/Phi-4-mini-instruct-4bit,long,tq_ratio_1.0,1965,PASS,1.63,3.942,1965,long_tq_K3V2_ratio1.0_buf1965,,2026-05-27T21:45:42
+mlx-community/gemma-3-4b-it-4bit,short,baseline,,PASS,1.065,2.936,202,short_baseline,,2026-05-27T21:45:55
+mlx-community/gemma-3-4b-it-4bit,short,tq_ratio_0.5,101,PASS,1.971,2.938,202,short_tq_K3V2_ratio0.5_buf101,,2026-05-27T21:45:55
+mlx-community/gemma-3-4b-it-4bit,short,tq_ratio_1.0,202,PASS,1.166,2.991,202,short_tq_K3V2_ratio1.0_buf202,,2026-05-27T21:45:55
+mlx-community/gemma-3-4b-it-4bit,long,baseline,,LOST_FORMAT,2.034,3.662,2041,long_baseline,,2026-05-27T21:45:55
+mlx-community/gemma-3-4b-it-4bit,long,tq_ratio_0.5,1020,OTHER,1.858,3.609,2041,long_tq_K3V2_ratio0.5_buf1020,,2026-05-27T21:45:55
+mlx-community/gemma-3-4b-it-4bit,long,tq_ratio_1.0,2041,OTHER,1.589,3.739,2041,long_tq_K3V2_ratio1.0_buf2041,,2026-05-27T21:45:55

@@ -1,0 +1,64 @@
+[project]
+name = "agentic-evals"
+version = "0.1.0"
+description = "Agentic benchmark platform for open-weight local LLMs (Apple Silicon × MLX first)."
+readme = "README.md"
+authors = [
+    { name = "Sathish Somasundaram", email = "28712492+sathishksomasundaram@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+license = { text = "Apache-2.0" }
+dependencies = [
+    "mlx-lm>=0.31.3",
+    "mlx-turboquant",
+]
+
+[project.scripts]
+agentic-evals = "agentic_evals.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.11.3,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "matplotlib>=3.10.9",
+    "mypy>=2.1.0",
+    "pre-commit>=4.6.0",
+    "pytest>=9.0.3",
+    "ruff>=0.15.14",
+]
+
+# ---- tool configs (Rule 5: format + quality) ----
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+# Exclude all reference / vendored code under docs/ (e.g. POC files) — they
+# are documentation artifacts, not project source.
+extend-exclude = ["docs/"]
+
+[tool.ruff.lint]
+# Sensible default set — keep tight (Rule 6).
+# E,F = pycodestyle + pyflakes · I = isort · UP = pyupgrade
+# B = flake8-bugbear · SIM = flake8-simplify · TID = flake8-tidy-imports
+select = ["E", "F", "I", "UP", "B", "SIM", "TID"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+docstring-code-format = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q --strict-markers"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["src"]
+
+[tool.uv.sources]
+mlx-turboquant = { git = "https://github.com/yzamari/mlx-turboquant.git" }

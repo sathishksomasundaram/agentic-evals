@@ -1,0 +1,59 @@
+{
+  "n_ctx": 128,
+  "d": 128,
+  "K_stats": {
+    "mean": 0.009209884330630302,
+    "std": 1.4359618425369263,
+    "max_abs": 18.63802146911621
+  },
+  "by_bits": {
+    "4": {
+      "poc": {
+        "label": "POC_bits4",
+        "mse": 0.019542,
+        "max_abs": 0.7656,
+        "cos": 0.99537
+      },
+      "port": {
+        "label": "port_bits4",
+        "mse": 0.019315,
+        "max_abs": 0.797,
+        "cos": 0.99541
+      },
+      "ratio_port_to_poc_mse": 0.988,
+      "cos_delta_port_minus_poc": 4e-05
+    },
+    "3": {
+      "poc": {
+        "label": "POC_bits3",
+        "mse": 0.072713,
+        "max_abs": 1.8901,
+        "cos": 0.98267
+      },
+      "port": {
+        "label": "port_bits3",
+        "mse": 0.070565,
+        "max_abs": 1.5273,
+        "cos": 0.98307
+      },
+      "ratio_port_to_poc_mse": 0.97,
+      "cos_delta_port_minus_poc": 0.0004
+    },
+    "2": {
+      "poc": {
+        "label": "POC_bits2",
+        "mse": 0.244559,
+        "max_abs": 2.7815,
+        "cos": 0.9396
+      },
+      "port": {
+        "label": "port_bits2",
+        "mse": 0.240695,
+        "max_abs": 2.9541,
+        "cos": 0.94037
+      },
+      "ratio_port_to_poc_mse": 0.984,
+      "cos_delta_port_minus_poc": 0.00077
+    }
+  }
+}

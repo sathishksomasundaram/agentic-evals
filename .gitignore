@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv/
+.uv_cache/
+
+# Tool caches
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Editor swap
+*.swp
+*~
+
+# Environment
+.env
+.env.local
+
+# Model checkpoints — never commit these (multi-GB)
+models/
+checkpoints/
+*.gguf
+*.safetensors
+*.mlx
+
+# Logs
+*.log
+
+# AI assistant context / config — keep local, never commit
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+GEMINI.md
+.cursor/
+.cursorrules
+.aider*
+.mcp.json
+
+# Blog drafts — authored here, but published/maintained outside the proof repo
+docs/blog/

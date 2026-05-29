@@ -1,0 +1,50 @@
+# Rule 5: pre-commit hooks for security, format, quality.
+# Run on every commit. Bypass requires explicit user instruction.
+#
+# Install once after clone: `uv run pre-commit install`
+# Run manually:             `uv run pre-commit run --all-files`
+
+repos:
+  # Standard hygiene
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ["--maxkb=500"]   # block multi-MB blobs by mistake
+      - id: detect-private-key
+
+  # Security — scan for accidentally committed secrets (Rule 5: security)
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
+
+  # Format + lint — ruff handles both (Rule 5: format + quality)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.14
+    hooks:
+      - id: ruff-format
+      - id: ruff-check
+        args: ["--fix"]
+
+  # Type checking (Rule 5: quality).
+  # Local hook (not mirrors-mypy) so mypy runs inside the project env, where the
+  # native deps it needs to resolve `mlx` / `mlx_turboquant` are installed.
+  # pre-commit's isolated venv can't install those (Apple-Silicon wheels + a git
+  # source), which would make every `# type: ignore[import-untyped]` look unused.
+  # This mirrors the authoritative gate: `uv run mypy src`.
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy (uv run, strict)
+        entry: uv run mypy
+        language: system
+        types: [python]
+        files: ^src/
+        pass_filenames: false
+        args: ["src"]

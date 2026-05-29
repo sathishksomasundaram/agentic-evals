@@ -1,0 +1,40 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "max_tokens": 300,
+  "head_dim": 128,
+  "num_layers": 28,
+  "system_prompt": "You are a helpful assistant. You have access to one tool:\n\nweb_search(query: str, time_range: str | None = None) -> str\n  Description: Run a DuckDuckGo search and return results.\n  Parameters:\n    query (required, string): the search query\n    time_range (optional, string): one of \"d\" (day), \"w\" (week), \"m\" (month),\n      \"y\" (year), or empty string. Defaults to inferred-from-query when omitted.\n\nWhen you need to use the tool, respond with EXACTLY this JSON format and nothing else:\n\n  {\"tool\": \"web_search\", \"args\": {\"query\": \"<your query>\", \"time_range\": \"<bucket-or-null>\"}}\n\nWhen you have the answer, respond normally without JSON.",
+  "user_prompt": "What's the weather in San Francisco right now?",
+  "bit_widths_swept": [
+    "baseline",
+    4,
+    3,
+    2
+  ],
+  "runs": [
+    {
+      "label": "baseline",
+      "time_s": 0.698,
+      "peak_mem_gb": 4.598,
+      "output": "{\"tool\": \"web_search\", \"args\": {\"query\": \"weather in San Francisco\", \"time_range\": \"\"}}"
+    },
+    {
+      "label": "tq_bits4",
+      "time_s": 6.744,
+      "peak_mem_gb": 4.565,
+      "output": "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    },
+    {
+      "label": "tq_bits3",
+      "time_s": 6.341,
+      "peak_mem_gb": 4.63,
+      "output": "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    },
+    {
+      "label": "tq_bits2",
+      "time_s": 6.361,
+      "peak_mem_gb": 4.651,
+      "output": "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    }
+  ]
+}

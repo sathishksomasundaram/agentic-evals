@@ -1,0 +1,22 @@
+{
+  "model_id": "mlx-community/DeepSeek-R1-Distill-Qwen-7B-4bit",
+  "max_tokens": 200,
+  "head_dim": 128,
+  "num_layers": 28,
+  "system_prompt": "You are a helpful assistant. You have access to one tool:\n\nweb_search(query: str, time_range: str | None = None) -> str\n  Description: Run a DuckDuckGo search and return results.\n  Parameters:\n    query (required, string): the search query\n    time_range (optional, string): one of \"d\" (day), \"w\" (week), \"m\" (month),\n      \"y\" (year), or empty string. Defaults to inferred-from-query when omitted.\n\nWhen you need to use the tool, respond with EXACTLY this JSON format and nothing else:\n\n  {\"tool\": \"web_search\", \"args\": {\"query\": \"<your query>\", \"time_range\": \"<bucket-or-null>\"}}\n\nWhen you have the answer, respond normally without JSON.",
+  "user_prompt": "What's the weather in San Francisco right now?",
+  "runs": [
+    {
+      "label": "TQ_OFF",
+      "time_s": 3.38,
+      "peak_mem_gb": 4.585,
+      "output": "Okay, so I need to figure out the current weather in San Francisco. I remember that the user asked for this information, and I have a tool called web_search that I can use. Let me think about how to approach this.\n\nFirst, I should use the web_search tool with the query \"current weather in San Francisco\" and maybe include a time range. Since the time range isn't specified, I'll let the tool infer it from the query. So, I'll structure the JSON with the tool as \"web_search\", the query as \"current weather in San Francisco\", and the time_range as an empty string.\n\nI should make sure to format the JSON exactly as required, with the query and time_range properly filled in. Once I run this, the tool will return the search results, which I can then provide to the user.\n\nI'm a bit nervous about the formatting, but I think as long as I follow the structure, it should be fine. I'll go ahead and"
+    },
+    {
+      "label": "TQ_ON_bits3",
+      "time_s": 5.528,
+      "peak_mem_gb": 4.62,
+      "output": "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    }
+  ]
+}

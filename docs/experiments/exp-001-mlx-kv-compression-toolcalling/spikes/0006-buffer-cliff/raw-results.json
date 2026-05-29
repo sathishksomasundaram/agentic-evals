@@ -1,0 +1,152 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "max_tokens": 200,
+  "head_dim": 128,
+  "num_layers": 28,
+  "short_prompt_tokens": 189,
+  "long_prompt_tokens": 1966,
+  "port": "yzamari/mlx-turboquant",
+  "bits": "K3/V2 fixed",
+  "runs": [
+    {
+      "label": "short_baseline",
+      "time_s": 0.734,
+      "peak_mem_gb": 4.595,
+      "output": "{\"tool\": \"web_search\", \"args\": {\"query\": \"weather in San Francisco\", \"time_range\": \"\"}}",
+      "config": {
+        "prompt_label": "short",
+        "buffer_size": null,
+        "label": "short_baseline"
+      },
+      "verdict": "OTHER",
+      "prompt_tokens": 189,
+      "buffer_to_total_ratio": 1.0
+    },
+    {
+      "label": "short_buf32",
+      "time_s": 0.733,
+      "peak_mem_gb": 4.595,
+      "output": "I don't have the current weather in San Francisco. I can find it for you if you let me know where you're looking.",
+      "config": {
+        "prompt_label": "short",
+        "buffer_size": 32,
+        "label": "short_buf32"
+      },
+      "verdict": "LOST_FORMAT",
+      "prompt_tokens": 189,
+      "buffer_to_total_ratio": 0.169
+    },
+    {
+      "label": "short_buf64",
+      "time_s": 0.711,
+      "peak_mem_gb": 4.595,
+      "output": "{\"tool\": \"web_search\", \"args\": {\"query\": \"weather in San Francisco\", \"time_range\": \"bucket-or-null\"}}",
+      "config": {
+        "prompt_label": "short",
+        "buffer_size": 64,
+        "label": "short_buf64"
+      },
+      "verdict": "OTHER",
+      "prompt_tokens": 189,
+      "buffer_to_total_ratio": 0.339
+    },
+    {
+      "label": "short_buf96",
+      "time_s": 0.713,
+      "peak_mem_gb": 4.596,
+      "output": "{\"tool\": \"web_search\", \"args\": {\"query\": \"weather in San Francisco\", \"time_range\": \"\"}}",
+      "config": {
+        "prompt_label": "short",
+        "buffer_size": 96,
+        "label": "short_buf96"
+      },
+      "verdict": "OTHER",
+      "prompt_tokens": 189,
+      "buffer_to_total_ratio": 0.508
+    },
+    {
+      "label": "short_buf128",
+      "time_s": 0.648,
+      "peak_mem_gb": 4.595,
+      "output": "{\"tool\": \"web_search\", \"args\": {\"query\": \"weather in San Francisco\", \"time_range\": \"\"}}",
+      "config": {
+        "prompt_label": "short",
+        "buffer_size": 128,
+        "label": "short_buf128"
+      },
+      "verdict": "OTHER",
+      "prompt_tokens": 189,
+      "buffer_to_total_ratio": 0.677
+    },
+    {
+      "label": "long_baseline",
+      "time_s": 3.263,
+      "peak_mem_gb": 5.093,
+      "output": "Weather conditions in San Francisco are currently unavailable, but San Francisco is known to have mild, wet weather. For the most accurate weather forecast, please check an online weather service.",
+      "config": {
+        "prompt_label": "long",
+        "buffer_size": null,
+        "label": "long_baseline"
+      },
+      "verdict": "LOST_FORMAT",
+      "prompt_tokens": 1966,
+      "buffer_to_total_ratio": 1.0
+    },
+    {
+      "label": "long_buf128",
+      "time_s": 3.182,
+      "peak_mem_gb": 5.076,
+      "output": "Weather conditions in San Francisco are currently unavailable, but San Francisco is known to have mild, wet weather. For the most accurate weather forecast, please check an online weather service.",
+      "config": {
+        "prompt_label": "long",
+        "buffer_size": 128,
+        "label": "long_buf128"
+      },
+      "verdict": "LOST_FORMAT",
+      "prompt_tokens": 1966,
+      "buffer_to_total_ratio": 0.065
+    },
+    {
+      "label": "long_buf256",
+      "time_s": 3.567,
+      "peak_mem_gb": 5.076,
+      "output": "Weather conditions in San Francisco right now are unavailable through direct query, but San Francisco's climate is known to be mild with moderate humidity. For the most accurate and up-to-date weather information in San Francisco, including current temperature and weather forecasts, a weather service or local news station would be able to provide the most recent weather data for San Francisco.",
+      "config": {
+        "prompt_label": "long",
+        "buffer_size": 256,
+        "label": "long_buf256"
+      },
+      "verdict": "LOST_FORMAT",
+      "prompt_tokens": 1966,
+      "buffer_to_total_ratio": 0.13
+    },
+    {
+      "label": "long_buf512",
+      "time_s": 4.556,
+      "peak_mem_gb": 5.076,
+      "output": "Weather conditions in San Francisco right now are unavailable through text-based interaction, but San Francisco's climate is known to be mild and temperamental, with a tendency to be foggy. For the most accurate and up-to-date weather forecast in San Francisco, I recommend checking an online weather service or local news outlet. San Francisco's weather is known to be variable, with a tendency to be foggy, so it's best to check an online weather service or local news outlet for the most accurate and current weather forecast. San Francisco's weather is known to be mild and temperamental, with a tendency to be foggy, so it's best to check an online weather service or local news outlet for the most accurate and current weather forecast.",
+      "config": {
+        "prompt_label": "long",
+        "buffer_size": 512,
+        "label": "long_buf512"
+      },
+      "verdict": "LOST_FORMAT",
+      "prompt_tokens": 1966,
+      "buffer_to_total_ratio": 0.26
+    },
+    {
+      "label": "long_buf1024",
+      "time_s": 2.945,
+      "peak_mem_gb": 5.076,
+      "output": "{\"tool\": \"web_search\", \"args\": {\"query\": \"weather in San Francisco\", \"time_range\": \"\"}}",
+      "config": {
+        "prompt_label": "long",
+        "buffer_size": 1024,
+        "label": "long_buf1024"
+      },
+      "verdict": "OTHER",
+      "prompt_tokens": 1966,
+      "buffer_to_total_ratio": 0.521
+    }
+  ]
+}

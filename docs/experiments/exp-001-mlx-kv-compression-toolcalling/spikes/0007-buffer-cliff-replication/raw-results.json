@@ -1,0 +1,65 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "max_tokens": 200,
+  "n_replicates": 3,
+  "prompt_tokens": 1966,
+  "head_dim": 128,
+  "num_layers": 28,
+  "port": "yzamari/mlx-turboquant",
+  "runs": [
+    {
+      "config": "baseline",
+      "replicate": 1,
+      "label": "baseline_r1",
+      "time_s": 3.261,
+      "peak_mem_gb": 5.076,
+      "output": "Weather conditions in San Francisco are currently unavailable, but San Francisco is known to have mild, wet weather. For the most accurate weather forecast, please check an online weather service.",
+      "verdict": "LOST_FORMAT"
+    },
+    {
+      "config": "baseline",
+      "replicate": 2,
+      "label": "baseline_r2",
+      "time_s": 3.212,
+      "peak_mem_gb": 5.076,
+      "output": "Weather conditions in San Francisco are currently unavailable, but San Francisco is known to have mild, wet weather. For the most accurate weather forecast, please check an online weather service.",
+      "verdict": "LOST_FORMAT"
+    },
+    {
+      "config": "baseline",
+      "replicate": 3,
+      "label": "baseline_r3",
+      "time_s": 3.212,
+      "peak_mem_gb": 5.076,
+      "output": "Weather conditions in San Francisco are currently unavailable, but San Francisco is known to have mild, wet weather. For the most accurate weather forecast, please check an online weather service.",
+      "verdict": "LOST_FORMAT"
+    },
+    {
+      "config": "tq_buf1024",
+      "replicate": 1,
+      "label": "tq_buf1024_r1",
+      "time_s": 2.92,
+      "peak_mem_gb": 5.076,
+      "output": "{\"tool\": \"web_search\", \"args\": {\"query\": \"weather in San Francisco\", \"time_range\": \"\"}}",
+      "verdict": "OTHER"
+    },
+    {
+      "config": "tq_buf1024",
+      "replicate": 2,
+      "label": "tq_buf1024_r2",
+      "time_s": 2.918,
+      "peak_mem_gb": 5.076,
+      "output": "{\"tool\": \"web_search\", \"args\": {\"query\": \"weather in San Francisco\", \"time_range\": \"\"}}",
+      "verdict": "OTHER"
+    },
+    {
+      "config": "tq_buf1024",
+      "replicate": 3,
+      "label": "tq_buf1024_r3",
+      "time_s": 2.919,
+      "peak_mem_gb": 5.076,
+      "output": "{\"tool\": \"web_search\", \"args\": {\"query\": \"weather in San Francisco\", \"time_range\": \"\"}}",
+      "verdict": "OTHER"
+    }
+  ]
+}

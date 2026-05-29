@@ -1,0 +1,58 @@
+{
+  "model_id": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "max_tokens": 300,
+  "head_dim": 128,
+  "num_layers": 28,
+  "port": "yzamari/mlx-turboquant",
+  "runs": [
+    {
+      "label": "baseline_no_tq",
+      "time_s": 0.735,
+      "peak_mem_gb": 4.595,
+      "output": "{\"tool\": \"web_search\", \"args\": {\"query\": \"weather in San Francisco\", \"time_range\": \"\"}}",
+      "config": {
+        "label": "baseline_no_tq",
+        "tq": false
+      }
+    },
+    {
+      "label": "yzamari_default_K3V2_buffer128",
+      "time_s": 0.651,
+      "peak_mem_gb": 4.595,
+      "output": "{\"tool\": \"web_search\", \"args\": {\"query\": \"weather in San Francisco\", \"time_range\": \"\"}}",
+      "config": {
+        "label": "yzamari_default_K3V2_buffer128",
+        "tq": true,
+        "key_bits": 3,
+        "value_bits": 2,
+        "buffer_size": 128
+      }
+    },
+    {
+      "label": "yzamari_K2V2_buffer128",
+      "time_s": 0.652,
+      "peak_mem_gb": 4.595,
+      "output": "{\"tool\": \"web_search\", \"args\": {\"query\": \"weather in San Francisco\", \"time_range\": \"\"}}",
+      "config": {
+        "label": "yzamari_K2V2_buffer128",
+        "tq": true,
+        "key_bits": 2,
+        "value_bits": 2,
+        "buffer_size": 128
+      }
+    },
+    {
+      "label": "yzamari_K3V2_buffer32_forces_compression",
+      "time_s": 0.977,
+      "peak_mem_gb": 4.595,
+      "output": "I don't have the current weather in San Francisco. I can find it for you if you let me know where you're looking.",
+      "config": {
+        "label": "yzamari_K3V2_buffer32_forces_compression",
+        "tq": true,
+        "key_bits": 3,
+        "value_bits": 2,
+        "buffer_size": 32
+      }
+    }
+  ]
+}
