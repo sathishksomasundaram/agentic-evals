@@ -1,0 +1,111 @@
+{
+  "model_id": "mlx-community/Qwen3-Coder-30B-A3B-Instruct-4bit",
+  "max_tokens": 1024,
+  "n_tasks": 8,
+  "n_pass": 7,
+  "pass_easy": "3/3",
+  "pass_hard": "4/5",
+  "median_decode_tps": 103.55,
+  "median_prefill_tps": 471.11,
+  "peak_mem_gb": 17.427,
+  "decode_vs_article": "in-band",
+  "peak_mem_vs_article": "below",
+  "rows": [
+    {
+      "task": "is_palindrome",
+      "difficulty": "easy",
+      "verdict": "PASS",
+      "detail": "ok",
+      "prompt_tokens": 56,
+      "prompt_tps": 25.28,
+      "generation_tokens": 64,
+      "generation_tps": 104.4,
+      "peak_mem_gb": 17.312,
+      "finish_reason": "stop"
+    },
+    {
+      "task": "two_sum",
+      "difficulty": "easy",
+      "verdict": "PASS",
+      "detail": "ok",
+      "prompt_tokens": 68,
+      "prompt_tps": 467.18,
+      "generation_tokens": 72,
+      "generation_tps": 102.93,
+      "peak_mem_gb": 17.314,
+      "finish_reason": "stop"
+    },
+    {
+      "task": "lru_cache_class",
+      "difficulty": "easy",
+      "verdict": "PASS",
+      "detail": "ok",
+      "prompt_tokens": 88,
+      "prompt_tps": 549.12,
+      "generation_tokens": 160,
+      "generation_tps": 102.65,
+      "peak_mem_gb": 17.345,
+      "finish_reason": "stop"
+    },
+    {
+      "task": "merge_intervals",
+      "difficulty": "hard",
+      "verdict": "PASS",
+      "detail": "ok",
+      "prompt_tokens": 73,
+      "prompt_tps": 272.55,
+      "generation_tokens": 151,
+      "generation_tps": 103.38,
+      "peak_mem_gb": 17.345,
+      "finish_reason": "stop"
+    },
+    {
+      "task": "coin_change",
+      "difficulty": "hard",
+      "verdict": "PASS",
+      "detail": "ok",
+      "prompt_tokens": 69,
+      "prompt_tps": 475.04,
+      "generation_tokens": 103,
+      "generation_tps": 103.8,
+      "peak_mem_gb": 17.345,
+      "finish_reason": "stop"
+    },
+    {
+      "task": "min_stack",
+      "difficulty": "hard",
+      "verdict": "PASS",
+      "detail": "ok",
+      "prompt_tokens": 83,
+      "prompt_tps": 538.23,
+      "generation_tokens": 148,
+      "generation_tps": 103.72,
+      "peak_mem_gb": 17.345,
+      "finish_reason": "stop"
+    },
+    {
+      "task": "group_anagrams",
+      "difficulty": "hard",
+      "verdict": "PASS",
+      "detail": "ok",
+      "prompt_tokens": 62,
+      "prompt_tps": 424.85,
+      "generation_tokens": 81,
+      "generation_tps": 104.48,
+      "peak_mem_gb": 17.345,
+      "finish_reason": "stop"
+    },
+    {
+      "task": "fix_binary_search",
+      "difficulty": "hard",
+      "verdict": "FAIL",
+      "detail": "SyntaxError: invalid syntax. Perhaps you forgot a comma?",
+      "prompt_tokens": 155,
+      "prompt_tps": 706.4,
+      "generation_tokens": 150,
+      "generation_tps": 102.13,
+      "peak_mem_gb": 17.427,
+      "finish_reason": "stop"
+    }
+  ]
+}

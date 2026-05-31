@@ -1,0 +1,44 @@
+{
+  "model_id": "mlx-community/Qwen3-Coder-30B-A3B-Instruct-4bit",
+  "gen_tokens": 8,
+  "article_prefill_tps": 1851.0,
+  "best_prefill_tps": 1273.37,
+  "fraction_of_article": 0.688,
+  "rows": [
+    {
+      "target_tokens": 512,
+      "prompt_tokens": 540,
+      "prompt_tps": 291.39,
+      "generation_tps": 109.6,
+      "peak_mem_gb": 17.8
+    },
+    {
+      "target_tokens": 1024,
+      "prompt_tokens": 1060,
+      "prompt_tps": 1273.37,
+      "generation_tps": 101.07,
+      "peak_mem_gb": 17.86
+    },
+    {
+      "target_tokens": 2048,
+      "prompt_tokens": 2100,
+      "prompt_tps": 1215.0,
+      "generation_tps": 100.72,
+      "peak_mem_gb": 18.138
+    },
+    {
+      "target_tokens": 4096,
+      "prompt_tokens": 4115,
+      "prompt_tps": 1189.54,
+      "generation_tps": 94.46,
+      "peak_mem_gb": 18.323
+    },
+    {
+      "target_tokens": 8192,
+      "prompt_tokens": 8210,
+      "prompt_tps": 1013.36,
+      "generation_tps": 82.14,
+      "peak_mem_gb": 18.742
+    }
+  ]
+}

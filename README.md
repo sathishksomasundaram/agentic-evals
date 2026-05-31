@@ -14,6 +14,7 @@ Every finding here ships with the exact code that produced it. Clone it, run one
 - **[docs/experiments/exp-001-mlx-kv-compression-toolcalling/](docs/experiments/exp-001-mlx-kv-compression-toolcalling/README.md)** — the first full experiment: the methodology filled in, then the full narrative — how it started, the baselines, the method, how each result was derived, and where it ended up.
 - **[docs/experiments/exp-001-mlx-kv-compression-toolcalling/spikes/](docs/experiments/exp-001-mlx-kv-compression-toolcalling/spikes/)** — the experiment trail. Each spike is a small, focused test with a REPORT documenting what it asked and what it found (including the times the conclusions were wrong and got corrected).
 - **[docs/experiments/exp-001-mlx-kv-compression-toolcalling/](docs/experiments/exp-001-mlx-kv-compression-toolcalling/)** — the first multi-model leaderboard: [REPORT](docs/experiments/exp-001-mlx-kv-compression-toolcalling/REPORT.md), [RECOMMENDATIONS](docs/experiments/exp-001-mlx-kv-compression-toolcalling/RECOMMENDATIONS.md) (per-model verdicts + copy-paste configs), [charts](docs/experiments/exp-001-mlx-kv-compression-toolcalling/results/charts/), and raw data (`raw-results.jsonl`, `leaderboard.csv`).
+- **[docs/experiments/](docs/experiments/)** — three closed experiments: **exp-001** (KV-cache compression × tool-calling — the hallucination cliff), **exp-002** (laptop MoE coding viability, substitute model — a deterministic bug-fix collapse), and **exp-003** (the same claim on the article's *real* thinking MoE — coding is a thinking-budget story).
 - **[src/agentic_evals/](src/agentic_evals/)** — the code: the generic `harness/` core, per-experiment runners under `experiments/`, and the `agentic-evals` CLI that dispatches them (`uv run agentic-evals --list`).
 - **[GLOSSARY.md](GLOSSARY.md)** — the handful of terms used throughout.
 
@@ -22,7 +23,7 @@ Every finding here ships with the exact code that produced it. Clone it, run one
 Requires Apple Silicon (current experiments use Apple's MLX), Python 3.12, and [uv](https://docs.astral.sh/uv/).
 
 ```bash
-git clone https://github.com/<your-gh>/agentic-evals
+git clone https://github.com/sathishks2011/agentic-evals
 cd agentic-evals
 uv sync
 uv run pre-commit install   # optional, for contributors

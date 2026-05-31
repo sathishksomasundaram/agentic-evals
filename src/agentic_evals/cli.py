@@ -29,6 +29,8 @@ from collections.abc import Sequence
 # CLI experiment slug -> Python subpackage holding that experiment's runners.
 _EXPERIMENTS: dict[str, str] = {
     "exp-001": "agentic_evals.experiments.exp001",
+    "exp-002": "agentic_evals.experiments.exp002",
+    "exp-003": "agentic_evals.experiments.exp003",
 }
 
 

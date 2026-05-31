@@ -1,4 +1,4 @@
-"""open-model-benchmark — agentic benchmark platform for open-weight local LLMs.
+"""agentic-evals — reproducible proofs for agentic capabilities of open-weight local LLMs.
 
 See docs/ for project scope, decisions, and the active wedge plan.
 """

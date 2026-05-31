@@ -8,6 +8,8 @@ from __future__ import annotations
 
 import csv
 import json
+import uuid
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -18,6 +20,34 @@ def append_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
     with path.open("a") as f:
         for row in rows:
             f.write(json.dumps(row) + "\n")
+
+
+def write_run(out_dir: Path, payload: dict[str, Any]) -> tuple[Path, Path]:
+    """Persist one experiment run for proof.
+
+    Writes two files under `out_dir`:
+      - ``runs/<run-id>.json`` — an *immutable* per-run archive (never overwritten),
+        so every execution leaves a reproducible record;
+      - ``raw-results.json`` — the canonical *latest* run (overwritten each time),
+        which the experiment write-ups link to.
+
+    The run id is a UTC timestamp plus a short random suffix (collision-proof for
+    runs in the same second). It and an ISO `created_utc` field are injected into
+    the stored payload. Returns (archived_path, latest_path).
+    """
+    now = datetime.now(UTC)
+    run_id = f"{now.strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:6]}"
+    stored = {"run_id": run_id, "created_utc": now.isoformat(), **payload}
+    text = json.dumps(stored, indent=2)
+
+    runs_dir = out_dir / "runs"
+    runs_dir.mkdir(parents=True, exist_ok=True)
+    archived = runs_dir / f"{run_id}.json"
+    archived.write_text(text)
+
+    latest = out_dir / "raw-results.json"
+    latest.write_text(text)
+    return archived, latest
 
 
 def rebuild_csv_from_jsonl(jsonl_path: Path, csv_path: Path, fields: list[str]) -> int:

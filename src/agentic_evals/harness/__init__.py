@@ -1,6 +1,6 @@
 """agentic_evals.harness — generic, reusable evaluation primitives.
 
-This is the part the open-model-benchmark platform and individual experiments
+This is the part the agentic-evals experiments
 import. Experiments under `experiments/` (and the legacy `spikes/`) are *instances*
 that orchestrate these primitives; the harness itself is task/experiment-agnostic
 where possible.
@@ -13,11 +13,15 @@ Stable public API:
         # tasks — the tool-calling evaluation (prompts + grading)
         SYSTEM_PROMPT_BASE, USER_PROMPT, FILLER_PARAGRAPH, build_long_system, grade,
         # report — persist results
-        append_jsonl, rebuild_csv_from_jsonl,
+        append_jsonl, rebuild_csv_from_jsonl, write_run,
     )
 """
 
-from agentic_evals.harness.report import append_jsonl, rebuild_csv_from_jsonl
+from agentic_evals.harness.report import (
+    append_jsonl,
+    rebuild_csv_from_jsonl,
+    write_run,
+)
 from agentic_evals.harness.runtime import (
     buffer_for_ratio,
     load_model,
@@ -46,4 +50,5 @@ __all__ = [
     "measure",
     "probe_arch",
     "rebuild_csv_from_jsonl",
+    "write_run",
 ]

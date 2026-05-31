@@ -1,0 +1,176 @@
+{
+  "run_id": "20260531T020757Z-7c92d4",
+  "created_utc": "2026-05-31T02:07:57.921906+00:00",
+  "model_id": "mlx-community/Qwen3-Coder-30B-A3B-Instruct-4bit",
+  "max_tokens": 512,
+  "sampled_temp": 0.8,
+  "sampled_top_p": 0.95,
+  "sampled_seeds": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "runs_per_variant": 5,
+  "variants": [
+    {
+      "variant": "echo_fix_binsearch",
+      "n": 5,
+      "n_pass": 0,
+      "n_collapse": 1,
+      "runs": [
+        {
+          "verdict": "FAIL",
+          "detail": "SyntaxError: invalid syntax",
+          "collapsed": false,
+          "finish_reason": "stop",
+          "snippet": "def binary_search(nums, target):\n    lo, hi = 0, len(nums)\n    while lo < hi:\n        mid = (import math\ndef binary_search(nums, target):\n    lo, hi = 0, len(nums)\n    while lo < hi:\n        mid = (lo",
+          "kind": "greedy",
+          "seed": null
+        },
+        {
+          "verdict": "FAIL",
+          "detail": "SyntaxError: invalid syntax",
+          "collapsed": false,
+          "finish_reason": "stop",
+          "snippet": "def binary_search(nums, target):\n    lo, hi = 0, len(nums)\n    while lo < hi:\n        mid = (import math\n    lo, hi = 0, len(nums)\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if nums[mid] ",
+          "kind": "sampled",
+          "seed": 1
+        },
+        {
+          "verdict": "FAIL",
+          "detail": "SyntaxError: unterminated triple-quoted string literal (detected at line 14)",
+          "collapsed": false,
+          "finish_reason": "stop",
+          "snippet": "def binary_search(nums, target):\n    lo, hi = 0, len(nums)\n    while lo < hi:\n        mid = (\"\"\"\n",
+          "kind": "sampled",
+          "seed": 2
+        },
+        {
+          "verdict": "FAIL",
+          "detail": "NameError: name 'x' is not defined",
+          "collapsed": false,
+          "finish_reason": "stop",
+          "snippet": "def binary_search(nums, target):\n    lo, hi = 0, len(nums)\n    while lo < hi:\n        mid = (x + y) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n       ",
+          "kind": "sampled",
+          "seed": 3
+        },
+        {
+          "verdict": "FAIL",
+          "detail": "SyntaxError: '(' was never closed",
+          "collapsed": true,
+          "finish_reason": "stop",
+          "snippet": "def binary_search(nums, target):\n    lo, hi = 0, len(nums)\n    while lo < hi:\n        mid = (public\n",
+          "kind": "sampled",
+          "seed": 4
+        }
+      ]
+    },
+    {
+      "variant": "scratch_binsearch",
+      "n": 5,
+      "n_pass": 4,
+      "n_collapse": 0,
+      "runs": [
+        {
+          "verdict": "PASS",
+          "detail": "ok",
+          "collapsed": false,
+          "finish_reason": "stop",
+          "snippet": "def binary_search(nums, target):\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif ",
+          "kind": "greedy",
+          "seed": null
+        },
+        {
+          "verdict": "PASS",
+          "detail": "ok",
+          "collapsed": false,
+          "finish_reason": "stop",
+          "snippet": "def binary_search(nums, target):\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif ",
+          "kind": "sampled",
+          "seed": 1
+        },
+        {
+          "verdict": "PASS",
+          "detail": "ok",
+          "collapsed": false,
+          "finish_reason": "stop",
+          "snippet": "def binary_search(nums, target):\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif ",
+          "kind": "sampled",
+          "seed": 2
+        },
+        {
+          "verdict": "PASS",
+          "detail": "ok",
+          "collapsed": false,
+          "finish_reason": "stop",
+          "snippet": "def binary_search(nums, target):\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif ",
+          "kind": "sampled",
+          "seed": 3
+        },
+        {
+          "verdict": "FAIL",
+          "detail": "IndentationError: expected an indented block after 'else' statement on line 10",
+          "collapsed": false,
+          "finish_reason": "stop",
+          "snippet": "def binary_search(nums, target):\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif ",
+          "kind": "sampled",
+          "seed": 4
+        }
+      ]
+    },
+    {
+      "variant": "echo_fix_factorial",
+      "n": 5,
+      "n_pass": 5,
+      "n_collapse": 0,
+      "runs": [
+        {
+          "verdict": "PASS",
+          "detail": "ok",
+          "collapsed": false,
+          "finish_reason": "stop",
+          "snippet": "def factorial(n):\n    result = 1\n    for i in range(1, n + 1):\n        result *= i\n    return result\n",
+          "kind": "greedy",
+          "seed": null
+        },
+        {
+          "verdict": "PASS",
+          "detail": "ok",
+          "collapsed": false,
+          "finish_reason": "stop",
+          "snippet": "def factorial(n):\n    result = 1\n    for i in range(1, n + 1):\n        result *= i\n    return result\n",
+          "kind": "sampled",
+          "seed": 1
+        },
+        {
+          "verdict": "PASS",
+          "detail": "ok",
+          "collapsed": false,
+          "finish_reason": "stop",
+          "snippet": "def factorial(n):\n    result = 1\n    for i in range(1, n + 1):\n        result *= i\n    return result\n",
+          "kind": "sampled",
+          "seed": 2
+        },
+        {
+          "verdict": "PASS",
+          "detail": "ok",
+          "collapsed": false,
+          "finish_reason": "stop",
+          "snippet": "def factorial(n):\n    result = 1\n    for i in range(1, n + 1):\n        result *= i\n    return result\n",
+          "kind": "sampled",
+          "seed": 3
+        },
+        {
+          "verdict": "PASS",
+          "detail": "ok",
+          "collapsed": false,
+          "finish_reason": "stop",
+          "snippet": "def factorial(n):\n    result = 1\n    for i in range(1, n + 1):\n        result *= i\n    return result\n",
+          "kind": "sampled",
+          "seed": 4
+        }
+      ]
+    }
+  ]
+}

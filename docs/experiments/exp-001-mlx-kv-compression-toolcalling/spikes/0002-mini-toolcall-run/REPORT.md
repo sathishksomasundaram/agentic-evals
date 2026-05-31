@@ -42,7 +42,7 @@ The output collapse to `!!!` is not subtle quality degradation; it's complete mo
 
 This directly contradicts the [POC's](../0001-inference-knobs-landscape/turboquant-poc/POC-REVIEW.md) optimistic K=V=3 result (66% needle retrieval on synthetic data ≠ "model still works"). It **validates yzamari's honest disclosure** that "needle retrieval fails on compressed tokens."
 
-**What this proves:** synthetic-data KV-quant benchmarks don't predict real-model behavior under autoregressive decoding. This is exactly the gap open-model-benchmark exists to measure. It's a feature, not a bug, that the spike surfaced this.
+**What this proves:** synthetic-data KV-quant benchmarks don't predict real-model behavior under autoregressive decoding. This is exactly the gap agentic-evals exists to measure. It's a feature, not a bug, that the spike surfaced this.
 
 **However:** before declaring rachittshah's port unfit, two confounds need ruling out:
 1. **Untested bit-widths.** `bits=4` may work fine. The cliff is somewhere between 4 and 3.

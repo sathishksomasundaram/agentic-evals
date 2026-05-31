@@ -54,7 +54,7 @@ But the actual iris repo I read is **Python 3.12 + FastAPI + LangChain/LangGraph
 - **The algorithm code itself is unaffected** — it's pure NumPy, framework-agnostic
 - **The integration recommendations need re-grounding** against iris's real Python stack before action
 
-## Impact on the open-model-benchmark plan
+## Impact on the agentic-evals plan
 
 This POC materially changes my picture of the TurboQuant axis. Per the original [turboquant-google.md](../turboquant-google.md), I marked TurboQuant-MLX as "high relevance, no canonical port, parallel research thread." That assessment now needs upgrading:
 
@@ -62,7 +62,7 @@ This POC materially changes my picture of the TurboQuant axis. Per the original 
 |---|---|
 | No canonical TurboQuant impl to test against | **Have a clean NumPy reference + quality harness** the user authored |
 | "Pick one of 7 community MLX ports" was the gating decision | Can validate any community MLX port against this reference's outputs |
-| TurboQuant deferred from wedge v0 due to research-stage uncertainty | The quality-vs-compression curve is **already characterized** on synthetic data — what's missing is the downstream agentic-task impact, which is *exactly* what open-model-benchmark is designed to measure |
+| TurboQuant deferred from wedge v0 due to research-stage uncertainty | The quality-vs-compression curve is **already characterized** on synthetic data — what's missing is the downstream agentic-task impact, which is *exactly* what agentic-evals is designed to measure |
 | Asymmetric K/V was "a research detail" | **Asymmetric K/V is the recommended default** (K4/V2 with first/last 2 layers in fp16) — should be the configuration the benchmark tests, not symmetric quants |
 
 ## Recommended action

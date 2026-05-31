@@ -1,0 +1,247 @@
+{
+  "run_id": "20260531T033504Z-0db508",
+  "created_utc": "2026-05-31T03:35:04.809018+00:00",
+  "model_id": "mlx-community/Qwen3-Coder-30B-A3B-Instruct-4bit",
+  "max_tokens": 160,
+  "top_k": 5,
+  "branch_marker": "mid = (",
+  "decoding": "greedy",
+  "variants": [
+    {
+      "variant": "echo_fix_binsearch",
+      "n_steps": 113,
+      "text": "```python\ndef binary_search(nums, target):\n    lo, hi = 0, len(nums)\n    while lo < hi:\n        mid = (import math\ndef binary_search(nums, target):\n    lo, hi = 0, len(nums)\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            lo = mid + 1\n        else:\n            hi = mid\n    return -1\n```",
+      "entropy_max_bits": 6.447,
+      "entropy_median_bits": 0.0,
+      "max_entropy_step": {
+        "i": 31,
+        "token": "import",
+        "entropy_bits": 6.447,
+        "top_k": [
+          {
+            "token": "import",
+            "prob": 0.1533
+          },
+          {
+            "token": "public",
+            "prob": 0.1196
+          },
+          {
+            "token": "#",
+            "prob": 0.0723
+          },
+          {
+            "token": "#!/",
+            "prob": 0.064
+          },
+          {
+            "token": "from",
+            "prob": 0.0564
+          }
+        ]
+      },
+      "branch": {
+        "step": 31,
+        "after_marker": "mid = (",
+        "entropy_bits": 6.447,
+        "entropy_rank": 1,
+        "n_steps": 113,
+        "top_k": [
+          {
+            "token": "import",
+            "prob": 0.1533
+          },
+          {
+            "token": "public",
+            "prob": 0.1196
+          },
+          {
+            "token": "#",
+            "prob": 0.0723
+          },
+          {
+            "token": "#!/",
+            "prob": 0.064
+          },
+          {
+            "token": "from",
+            "prob": 0.0564
+          }
+        ]
+      },
+      "window": [
+        {
+          "i": 28,
+          "token": " mid",
+          "entropy_bits": 0.002
+        },
+        {
+          "i": 29,
+          "token": " =",
+          "entropy_bits": 0.0
+        },
+        {
+          "i": 30,
+          "token": " (",
+          "entropy_bits": 0.049
+        },
+        {
+          "i": 31,
+          "token": "import",
+          "entropy_bits": 6.447
+        },
+        {
+          "i": 32,
+          "token": " math",
+          "entropy_bits": 0.141
+        },
+        {
+          "i": 33,
+          "token": "\n",
+          "entropy_bits": 0.099
+        },
+        {
+          "i": 34,
+          "token": "def",
+          "entropy_bits": 2.074
+        }
+      ]
+    },
+    {
+      "variant": "scratch_binsearch",
+      "n_steps": 89,
+      "text": "```python\ndef binary_search(nums, target):\n    left, right = 0, len(nums) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return -1\n```",
+      "entropy_max_bits": 0.997,
+      "entropy_median_bits": 0.0,
+      "max_entropy_step": {
+        "i": 81,
+        "token": "\n    \n",
+        "entropy_bits": 0.997,
+        "top_k": [
+          {
+            "token": "\n    \n",
+            "prob": 0.6875
+          },
+          {
+            "token": "\n",
+            "prob": 0.3242
+          },
+          {
+            "token": "\n            \n",
+            "prob": 0.0143
+          },
+          {
+            "token": "    \n",
+            "prob": 0.0007
+          },
+          {
+            "token": "            \n",
+            "prob": 0.0003
+          }
+        ]
+      },
+      "branch": {
+        "step": 35,
+        "after_marker": "mid = (",
+        "entropy_bits": 0.001,
+        "entropy_rank": 17,
+        "n_steps": 89,
+        "top_k": [
+          {
+            "token": "left",
+            "prob": 1.0
+          },
+          {
+            "token": " left",
+            "prob": 0.0001
+          },
+          {
+            "token": "Left",
+            "prob": 0.0
+          },
+          {
+            "token": "_left",
+            "prob": 0.0
+          },
+          {
+            "token": "(left",
+            "prob": 0.0
+          }
+        ]
+      },
+      "window": [
+        {
+          "i": 32,
+          "token": " mid",
+          "entropy_bits": 0.0
+        },
+        {
+          "i": 33,
+          "token": " =",
+          "entropy_bits": 0.0
+        },
+        {
+          "i": 34,
+          "token": " (",
+          "entropy_bits": 0.0
+        },
+        {
+          "i": 35,
+          "token": "left",
+          "entropy_bits": 0.001
+        },
+        {
+          "i": 36,
+          "token": " +",
+          "entropy_bits": 0.0
+        },
+        {
+          "i": 37,
+          "token": " right",
+          "entropy_bits": 0.0
+        },
+        {
+          "i": 38,
+          "token": ")",
+          "entropy_bits": 0.0
+        }
+      ]
+    },
+    {
+      "variant": "echo_fix_factorial",
+      "n_steps": 37,
+      "text": "```python\ndef factorial(n):\n    result = 1\n    for i in range(1, n + 1):\n        result *= i\n    return result\n```",
+      "entropy_max_bits": 0.552,
+      "entropy_median_bits": 0.0,
+      "max_entropy_step": {
+        "i": 35,
+        "token": "```",
+        "entropy_bits": 0.552,
+        "top_k": [
+          {
+            "token": "```",
+            "prob": 0.8828
+          },
+          {
+            "token": "``",
+            "prob": 0.1357
+          },
+          {
+            "token": "\n",
+            "prob": 0.0
+          },
+          {
+            "token": "`",
+            "prob": 0.0
+          },
+          {
+            "token": "\t",
+            "prob": 0.0
+          }
+        ]
+      },
+      "branch": null,
+      "window": null
+    }
+  ]
+}

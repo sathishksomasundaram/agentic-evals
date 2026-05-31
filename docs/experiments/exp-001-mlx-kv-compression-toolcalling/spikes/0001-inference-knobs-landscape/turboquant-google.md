@@ -52,7 +52,7 @@ vLLM / NVIDIA path: see `turboquant-academic.md`.
 2. **TurboQuant ↔ PolarQuant naming overlap** — verify against the paper.
 3. ~~No standard benchmark harness~~ — **resolved**: the POC harness (`needle retrieval %`, `attention KL`, `output cosine` at d=128 and d=256, symmetric + asymmetric K/V) is the canonical measurement methodology. Adopt directly.
 4. **Apple Silicon hardware variance** — M1 / M2 / M3 / M4 (and Pro / Max / Ultra) have different memory bandwidth + unified-memory sizes. Numbers don't transfer cleanly across chips.
-5. **No real-model validation yet** — POC measures on synthetic outlier KV. Confirmed-as-missing: downstream impact on real models running real agentic workloads, which is the gap open-model-benchmark fills.
+5. **No real-model validation yet** — POC measures on synthetic outlier KV. Confirmed-as-missing: downstream impact on real models running real agentic workloads, which is the gap agentic-evals fills.
 
 ## References
 

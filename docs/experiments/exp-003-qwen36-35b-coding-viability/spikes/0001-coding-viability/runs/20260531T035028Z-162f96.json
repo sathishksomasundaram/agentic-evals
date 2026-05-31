@@ -1,0 +1,113 @@
+{
+  "run_id": "20260531T035028Z-162f96",
+  "created_utc": "2026-05-31T03:50:28.422784+00:00",
+  "model_id": "mlx-community/Qwen3.6-35B-A3B-4bit",
+  "max_tokens": 3072,
+  "decoding": "greedy",
+  "article_decode_tps": [
+    90.0,
+    130.0
+  ],
+  "article_peak_gb": [
+    19.0,
+    22.0
+  ],
+  "median_decode_tps": 107.62,
+  "decode_in_band": true,
+  "peak_mem_gb": 19.837,
+  "peak_in_band": true,
+  "n_pass": 6,
+  "n_tasks": 8,
+  "pass_easy": "2/3",
+  "pass_hard": "4/5",
+  "rows": [
+    {
+      "task": "is_palindrome",
+      "difficulty": "easy",
+      "verdict": "PASS",
+      "detail": "ok",
+      "thinking": true,
+      "generation_tps": 110.43,
+      "generation_tokens": 935,
+      "peak_mem_gb": 19.72,
+      "finish_reason": "stop"
+    },
+    {
+      "task": "two_sum",
+      "difficulty": "easy",
+      "verdict": "PASS",
+      "detail": "ok",
+      "thinking": true,
+      "generation_tps": 110.19,
+      "generation_tokens": 943,
+      "peak_mem_gb": 19.725,
+      "finish_reason": "stop"
+    },
+    {
+      "task": "lru_cache_class",
+      "difficulty": "easy",
+      "verdict": "FAIL",
+      "detail": "SyntaxError: invalid syntax",
+      "thinking": true,
+      "generation_tps": 107.46,
+      "generation_tokens": 3072,
+      "peak_mem_gb": 19.76,
+      "finish_reason": "length"
+    },
+    {
+      "task": "merge_intervals",
+      "difficulty": "hard",
+      "verdict": "PASS",
+      "detail": "ok",
+      "thinking": true,
+      "generation_tps": 107.93,
+      "generation_tokens": 1612,
+      "peak_mem_gb": 19.76,
+      "finish_reason": "stop"
+    },
+    {
+      "task": "coin_change",
+      "difficulty": "hard",
+      "verdict": "PASS",
+      "detail": "ok",
+      "thinking": true,
+      "generation_tps": 107.5,
+      "generation_tokens": 1735,
+      "peak_mem_gb": 19.76,
+      "finish_reason": "stop"
+    },
+    {
+      "task": "min_stack",
+      "difficulty": "hard",
+      "verdict": "PASS",
+      "detail": "ok",
+      "thinking": false,
+      "generation_tps": 107.12,
+      "generation_tokens": 3072,
+      "peak_mem_gb": 19.76,
+      "finish_reason": "length"
+    },
+    {
+      "task": "group_anagrams",
+      "difficulty": "hard",
+      "verdict": "PASS",
+      "detail": "ok",
+      "thinking": true,
+      "generation_tps": 107.73,
+      "generation_tokens": 1648,
+      "peak_mem_gb": 19.76,
+      "finish_reason": "stop"
+    },
+    {
+      "task": "fix_binary_search",
+      "difficulty": "hard",
+      "verdict": "FAIL",
+      "detail": "timeout>15s",
+      "thinking": false,
+      "generation_tps": 106.11,
+      "generation_tokens": 3072,
+      "peak_mem_gb": 19.837,
+      "finish_reason": "length"
+    }
+  ]
+}

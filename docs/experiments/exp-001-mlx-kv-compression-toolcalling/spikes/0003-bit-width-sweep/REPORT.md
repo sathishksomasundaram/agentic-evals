@@ -118,4 +118,4 @@ Even discounting the EOS issue, TQ is ~3x slower per token on rachittshah's pure
 
 The benchmark's thesis — *"real-model autoregressive decoding is the test that matters; synthetic logit-similarity benchmarks do not predict it"* — is being validated by our own spikes. The POC was right at the math level. rachittshah's port might be right at the math level (TBD via spike 0004). But neither produces working tool-calls under real generation on a real instruct model.
 
-This is the exact gap open-model-benchmark exists to close.
+This is the exact gap agentic-evals exists to close.
