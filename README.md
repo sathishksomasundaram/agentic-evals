@@ -23,7 +23,7 @@ Every finding here ships with the exact code that produced it. Clone it, run one
 Requires Apple Silicon (current experiments use Apple's MLX), Python 3.12, and [uv](https://docs.astral.sh/uv/).
 
 ```bash
-git clone https://github.com/sathishks2011/agentic-evals
+git clone https://github.com/sathishksomasundaram/agentic-evals
 cd agentic-evals
 uv sync
 uv run pre-commit install   # optional, for contributors
