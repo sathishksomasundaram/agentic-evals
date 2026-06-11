@@ -49,6 +49,21 @@ granite4 n=4: 84.4 / 83.1 / 85.7 / 81.8 (mean 83.8 ± 1.7) at temp 0.1 —
 LLM routing is ±2-point noisy run-to-run even near-greedy. The keyword
 classifier is deterministic (n>1 byte-identical, no replication needed).
 
+## v1 update (spike 0003 — new models, thinking budgets, daemon 0.30.7)
+
+Re-tested with the post-spike-0001 releases (gemma4:e4b-it-qat,
+gemma4:12b-it-qat; qwen3.7 does not exist on Ollama) plus thinking-budget
+fairness controls. **REJECTED stands, against 9 configurations.** Three
+scores now reach/pass 88.3% on paper — qwen3.5 w/ 2048-token thinking
+(90.9% @ 26.6s, 47% fallback), gemma4:12b w/ capped thinking (89.6% @
+5.9s, 39% fallback), qwen3.6:27b (88.3% @ 15.2s, 25% fallback) — all
+fallback-inflated and 12–80× over the latency criterion. Refinement: on
+completed cases the thinking models route at 91–95% (better than the
+table); their failure is *completion within budget*, not judgment. New
+finding: gemma4:12b routed *worse* with uncapped thinking (81.8%) than
+with no thinking (83.1%, n=3 byte-stable) — overthinking inversion. Full
+data: `spikes/0003-new-models-thinking-budgets/REPORT.md`.
+
 ## Limits
 
 One golden set (77 cases, English, IRIS's intent taxonomy), one prompt

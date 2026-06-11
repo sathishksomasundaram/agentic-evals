@@ -1,0 +1,22 @@
+{
+  "run_id": "20260611T172226Z-b3cf71",
+  "created_utc": "2026-06-11T17:22:26.040780+00:00",
+  "spike": "0001-model-sweep",
+  "summaries": [
+    {
+      "config": "llm:gemma4:e4b-it-qat",
+      "run": 0,
+      "cases": 77,
+      "accuracy": 0.8182,
+      "accuracy_by_class": {
+        "adversarial": 0.7143,
+        "ambiguous": 0.6,
+        "clear": 0.8667
+      },
+      "fallback_rate": 0.026,
+      "latency_p50_ms": 683.3,
+      "latency_p95_ms": 730.4,
+      "latency_max_ms": 1196.3
+    }
+  ]
+}

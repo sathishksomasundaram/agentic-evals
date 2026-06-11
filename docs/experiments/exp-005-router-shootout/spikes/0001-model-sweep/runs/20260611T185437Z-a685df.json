@@ -1,0 +1,22 @@
+{
+  "run_id": "20260611T185437Z-a685df",
+  "created_utc": "2026-06-11T18:54:37.700252+00:00",
+  "spike": "0001-model-sweep",
+  "summaries": [
+    {
+      "config": "llm:qwen3.5:4b-q4_K_M:bigbudget",
+      "run": 0,
+      "cases": 77,
+      "accuracy": 0.9091,
+      "accuracy_by_class": {
+        "adversarial": 0.5714,
+        "ambiguous": 0.7,
+        "clear": 0.9833
+      },
+      "fallback_rate": 0.4675,
+      "latency_p50_ms": 26590.3,
+      "latency_p95_ms": 30774.5,
+      "latency_max_ms": 32063.9
+    }
+  ]
+}

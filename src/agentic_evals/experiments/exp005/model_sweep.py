@@ -115,6 +115,8 @@ def main() -> None:
     single_model = os.getenv("EXP005_MODEL") or os.getenv("OMB_MODEL")
     runs = int(os.getenv("EXP005_RUNS", "1"))
     skip_keyword = os.getenv("EXP005_SKIP_KEYWORD", "").strip() == "1"
+    # Distinguishes spike-0003 variants (no-think, big-budget) in the results.
+    label_suffix = os.getenv("EXP005_LABEL_SUFFIX", "")
 
     cases = load_cases()
     models = [single_model] if single_model else DEFAULT_MODELS
@@ -130,7 +132,9 @@ def main() -> None:
         print(f"\n--- warming {model} ---")
         ollama_client.warm(model)
         for run_index in range(runs):
-            graded = grade_config(f"llm:{model}", cases, make_llm_route(model), run_index)
+            graded = grade_config(
+                f"llm:{model}{label_suffix}", cases, make_llm_route(model), run_index
+            )
             all_summaries.append(graded["summary"])
             append_jsonl(RESULTS_DIR / "raw-results.jsonl", graded["rows"])
             print(json.dumps(graded["summary"], indent=2))

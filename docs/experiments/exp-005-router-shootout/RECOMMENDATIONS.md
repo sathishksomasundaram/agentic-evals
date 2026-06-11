@@ -38,6 +38,18 @@
   zero variance, byte-identical replication — an LLM replacement must beat
   it by enough to pay for losing all three.
 
+## v1 addendum (new models)
+
+- gemma4 QAT and the 27B flagship don't change the deployment call: their
+  only ≥baseline scores are fallback-inflated at 6–27s per route. No-think
+  modes (the only deployable configuration) all land below the baseline.
+- New rule: **never put a thinking model in the routing hot path** — and
+  if one sneaks in, cap its budget; uncapped thinking measured *worse*
+  (gemma4:12b: 81.8% uncapped vs 83.1% no-think).
+- The niche worth watching: thinking models' own-answer accuracy (91–95%)
+  beats the table — if local inference ever gets 50× faster, selective
+  async escalation becomes interesting. Not before.
+
 ## Open follow-ups
 
 - Rule-fix pass on the 5 trap families, graded against the golden set
