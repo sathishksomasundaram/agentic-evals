@@ -1,0 +1,20 @@
+{
+  "run_id": "20260611T195825Z-ec611b",
+  "created_utc": "2026-06-11T19:58:25.000385+00:00",
+  "spike": "0002-cross-stack",
+  "summary": {
+    "config": "mlx:qwen2.5-7b-4bit",
+    "stack": "mlx",
+    "model": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+    "routing_accuracy": 0.7403,
+    "routing_p50_ms": 557.8,
+    "routing_p95_ms": 579.7,
+    "fallback_rate": 0.026,
+    "decode_tps_mean": 67.0,
+    "decode_tps_runs": [
+      65.2,
+      67.7,
+      68.0
+    ]
+  }
+}
