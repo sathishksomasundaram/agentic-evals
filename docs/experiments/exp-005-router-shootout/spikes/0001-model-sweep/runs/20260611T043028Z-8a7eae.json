@@ -1,0 +1,97 @@
+{
+  "run_id": "20260611T043028Z-8a7eae",
+  "created_utc": "2026-06-11T04:30:28.527087+00:00",
+  "spike": "0001-model-sweep",
+  "summaries": [
+    {
+      "config": "keyword",
+      "run": 0,
+      "cases": 77,
+      "accuracy": 0.8831,
+      "accuracy_by_class": {
+        "adversarial": 0.4286,
+        "ambiguous": 0.5,
+        "clear": 1.0
+      },
+      "fallback_rate": 0.0,
+      "latency_p50_ms": 0.0,
+      "latency_p95_ms": 0.0,
+      "latency_max_ms": 0.0
+    },
+    {
+      "config": "llm:llama3.2:3b",
+      "run": 0,
+      "cases": 77,
+      "accuracy": 0.7532,
+      "accuracy_by_class": {
+        "adversarial": 0.5714,
+        "ambiguous": 0.5,
+        "clear": 0.8167
+      },
+      "fallback_rate": 0.3377,
+      "latency_p50_ms": 301.0,
+      "latency_p95_ms": 670.7,
+      "latency_max_ms": 2084.3
+    },
+    {
+      "config": "llm:qwen3.5:4b-q4_K_M",
+      "run": 0,
+      "cases": 77,
+      "accuracy": 0.8831,
+      "accuracy_by_class": {
+        "adversarial": 0.4286,
+        "ambiguous": 0.5,
+        "clear": 1.0
+      },
+      "fallback_rate": 1.0,
+      "latency_p50_ms": 5402.5,
+      "latency_p95_ms": 5496.5,
+      "latency_max_ms": 6055.8
+    },
+    {
+      "config": "llm:granite4:latest",
+      "run": 0,
+      "cases": 77,
+      "accuracy": 0.8442,
+      "accuracy_by_class": {
+        "adversarial": 0.5714,
+        "ambiguous": 0.7,
+        "clear": 0.9
+      },
+      "fallback_rate": 0.1948,
+      "latency_p50_ms": 321.8,
+      "latency_p95_ms": 339.9,
+      "latency_max_ms": 746.8
+    },
+    {
+      "config": "llm:qwen2.5:7b-instruct",
+      "run": 0,
+      "cases": 77,
+      "accuracy": 0.7532,
+      "accuracy_by_class": {
+        "adversarial": 0.4286,
+        "ambiguous": 0.6,
+        "clear": 0.8167
+      },
+      "fallback_rate": 0.0779,
+      "latency_p50_ms": 513.5,
+      "latency_p95_ms": 539.5,
+      "latency_max_ms": 1329.1
+    },
+    {
+      "config": "llm:gemma2:9b",
+      "run": 0,
+      "cases": 77,
+      "accuracy": 0.6234,
+      "accuracy_by_class": {
+        "adversarial": 0.2857,
+        "ambiguous": 0.4,
+        "clear": 0.7
+      },
+      "fallback_rate": 0.026,
+      "latency_p50_ms": 775.5,
+      "latency_p95_ms": 913.9,
+      "latency_max_ms": 2362.3
+    }
+  ]
+}

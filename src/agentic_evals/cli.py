@@ -31,6 +31,7 @@ _EXPERIMENTS: dict[str, str] = {
     "exp-001": "agentic_evals.experiments.exp001",
     "exp-002": "agentic_evals.experiments.exp002",
     "exp-003": "agentic_evals.experiments.exp003",
+    "exp-005": "agentic_evals.experiments.exp005",
 }
 
 

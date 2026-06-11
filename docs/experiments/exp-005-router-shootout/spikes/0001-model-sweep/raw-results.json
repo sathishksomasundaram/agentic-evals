@@ -1,0 +1,52 @@
+{
+  "run_id": "20260611T043430Z-32d15e",
+  "created_utc": "2026-06-11T04:34:30.788172+00:00",
+  "spike": "0001-model-sweep",
+  "summaries": [
+    {
+      "config": "llm:granite4:latest",
+      "run": 0,
+      "cases": 77,
+      "accuracy": 0.8312,
+      "accuracy_by_class": {
+        "adversarial": 0.5714,
+        "ambiguous": 0.7,
+        "clear": 0.8833
+      },
+      "fallback_rate": 0.1818,
+      "latency_p50_ms": 322.8,
+      "latency_p95_ms": 340.8,
+      "latency_max_ms": 739.5
+    },
+    {
+      "config": "llm:granite4:latest",
+      "run": 1,
+      "cases": 77,
+      "accuracy": 0.8571,
+      "accuracy_by_class": {
+        "adversarial": 0.5714,
+        "ambiguous": 0.8,
+        "clear": 0.9
+      },
+      "fallback_rate": 0.1688,
+      "latency_p50_ms": 324.7,
+      "latency_p95_ms": 343.0,
+      "latency_max_ms": 388.0
+    },
+    {
+      "config": "llm:granite4:latest",
+      "run": 2,
+      "cases": 77,
+      "accuracy": 0.8182,
+      "accuracy_by_class": {
+        "adversarial": 0.5714,
+        "ambiguous": 0.7,
+        "clear": 0.8667
+      },
+      "fallback_rate": 0.1558,
+      "latency_p50_ms": 325.6,
+      "latency_p95_ms": 343.7,
+      "latency_max_ms": 388.2
+    }
+  ]
+}

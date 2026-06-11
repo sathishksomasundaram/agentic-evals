@@ -1,0 +1,82 @@
+{
+  "run_id": "20260611T043230Z-3c5765",
+  "created_utc": "2026-06-11T04:32:30.022325+00:00",
+  "spike": "0002-hybrid-sweep",
+  "summaries": [
+    {
+      "config": "hybrid:llama3.2:3b",
+      "run": 0,
+      "cases": 77,
+      "accuracy": 0.8571,
+      "accuracy_by_class": {
+        "adversarial": 0.4286,
+        "ambiguous": 0.5,
+        "clear": 0.9667
+      },
+      "fallback_rate": 0.0,
+      "latency_p50_ms": 0.0,
+      "latency_p95_ms": 0.0,
+      "latency_max_ms": 692.5
+    },
+    {
+      "config": "hybrid:qwen3.5:4b-q4_K_M",
+      "run": 0,
+      "cases": 77,
+      "accuracy": 0.8831,
+      "accuracy_by_class": {
+        "adversarial": 0.4286,
+        "ambiguous": 0.5,
+        "clear": 1.0
+      },
+      "fallback_rate": 0.0,
+      "latency_p50_ms": 0.0,
+      "latency_p95_ms": 0.0,
+      "latency_max_ms": 5972.3
+    },
+    {
+      "config": "hybrid:granite4:latest",
+      "run": 0,
+      "cases": 77,
+      "accuracy": 0.8701,
+      "accuracy_by_class": {
+        "adversarial": 0.4286,
+        "ambiguous": 0.5,
+        "clear": 0.9833
+      },
+      "fallback_rate": 0.0,
+      "latency_p50_ms": 0.0,
+      "latency_p95_ms": 0.0,
+      "latency_max_ms": 752.7
+    },
+    {
+      "config": "hybrid:qwen2.5:7b-instruct",
+      "run": 0,
+      "cases": 77,
+      "accuracy": 0.8571,
+      "accuracy_by_class": {
+        "adversarial": 0.4286,
+        "ambiguous": 0.5,
+        "clear": 0.9667
+      },
+      "fallback_rate": 0.0,
+      "latency_p50_ms": 0.0,
+      "latency_p95_ms": 0.0,
+      "latency_max_ms": 1318.0
+    },
+    {
+      "config": "hybrid:gemma2:9b",
+      "run": 0,
+      "cases": 77,
+      "accuracy": 0.8571,
+      "accuracy_by_class": {
+        "adversarial": 0.4286,
+        "ambiguous": 0.5,
+        "clear": 0.9667
+      },
+      "fallback_rate": 0.0,
+      "latency_p50_ms": 0.0,
+      "latency_p95_ms": 0.0,
+      "latency_max_ms": 1718.0
+    }
+  ]
+}
