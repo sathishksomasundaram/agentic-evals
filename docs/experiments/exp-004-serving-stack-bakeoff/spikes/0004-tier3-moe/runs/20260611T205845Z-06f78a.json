@@ -1,0 +1,172 @@
+{
+  "run_id": "20260611T205845Z-06f78a",
+  "created_utc": "2026-06-11T20:58:45.641417+00:00",
+  "spike": "0004-cliff-in-harness",
+  "summary": {
+    "model": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+    "ratios": {
+      "0.45": {
+        "pass": 0,
+        "wrong_route": 0,
+        "broken": 5
+      },
+      "0.5": {
+        "pass": 0,
+        "wrong_route": 0,
+        "broken": 5
+      },
+      "0.55": {
+        "pass": 5,
+        "wrong_route": 0,
+        "broken": 0
+      },
+      "1.0": {
+        "pass": 5,
+        "wrong_route": 0,
+        "broken": 0
+      }
+    },
+    "grid": [
+      {
+        "ratio": 0.45,
+        "utterance": "schedule a meeting with Alex tomorrow at 3pm",
+        "prompt_tokens": 2050,
+        "verdict": "BROKEN_OUTPUT",
+        "output_head": "schedule a meeting with Alex tomorrow at 3pm"
+      },
+      {
+        "ratio": 0.45,
+        "utterance": "summarize my inbox from today",
+        "prompt_tokens": 2047,
+        "verdict": "BROKEN_OUTPUT",
+        "output_head": "?>> summarize my inbox from today\nsummarize my inbox from today\nsummarize my inbox from today\nsummarize my inbox from to"
+      },
+      {
+        "ratio": 0.45,
+        "utterance": "write a python function to parse csv files",
+        "prompt_tokens": 2048,
+        "verdict": "BROKEN_OUTPUT",
+        "output_head": "[\".write a python function to parse csv files\", \".python function to parse csv files\", \"write a python function to parse"
+      },
+      {
+        "ratio": 0.45,
+        "utterance": "what's the weather in chennai today?",
+        "prompt_tokens": 2049,
+        "verdict": "BROKEN_OUTPUT",
+        "output_head": "{\\\"weather\\\":\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\""
+      },
+      {
+        "ratio": 0.45,
+        "utterance": "look up the latest mlx release notes",
+        "prompt_tokens": 2047,
+        "verdict": "BROKEN_OUTPUT",
+        "output_head": "Vaults"
+      },
+      {
+        "ratio": 0.5,
+        "utterance": "schedule a meeting with Alex tomorrow at 3pm",
+        "prompt_tokens": 2050,
+        "verdict": "BROKEN_OUTPUT",
+        "output_head": "{\"schedule a meeting with Alex tomorrow at 3pm\"} schedule a meeting with Alex tomorrow at 3pm. schedule a meeting with A"
+      },
+      {
+        "ratio": 0.5,
+        "utterance": "summarize my inbox from today",
+        "prompt_tokens": 2047,
+        "verdict": "BROKEN_OUTPUT",
+        "output_head": "{\"intent\":\"summarize my inbox from today\",\"origin\":\"user\"}"
+      },
+      {
+        "ratio": 0.5,
+        "utterance": "write a python function to parse csv files",
+        "prompt_tokens": 2048,
+        "verdict": "BROKEN_OUTPUT",
+        "output_head": "{\"python function to parse csv files\": \"write a python function to parse csv files\", \"python function to parse csv files"
+      },
+      {
+        "ratio": 0.5,
+        "utterance": "what's the weather in chennai today?",
+        "prompt_tokens": 2049,
+        "verdict": "BROKEN_OUTPUT",
+        "output_head": "{\"intent\":\"weather\",\"type\":\"weather\",\"location\":\"chennai\",\"day\":\"today\"}"
+      },
+      {
+        "ratio": 0.5,
+        "utterance": "look up the latest mlx release notes",
+        "prompt_tokens": 2047,
+        "verdict": "BROKEN_OUTPUT",
+        "output_head": "{\"intent\":\"lookup the latest mlx release notes\",\"category\":\"action\":\"lookup release notes\",\"subtask\":\"find the latest ml"
+      },
+      {
+        "ratio": 0.55,
+        "utterance": "schedule a meeting with Alex tomorrow at 3pm",
+        "prompt_tokens": 2050,
+        "verdict": "PASS",
+        "output_head": "{\"intent\": \"calendar\", \"agent_type\": \"calendar\", \"is_multi_step\": false, \"confidence\": 1}"
+      },
+      {
+        "ratio": 0.55,
+        "utterance": "summarize my inbox from today",
+        "prompt_tokens": 2047,
+        "verdict": "PASS",
+        "output_head": "{\"intent\": \"communication\", \"agent_type\": \"email\", \"is_multi_step\": false, \"confidence\": 0.9}"
+      },
+      {
+        "ratio": 0.55,
+        "utterance": "write a python function to parse csv files",
+        "prompt_tokens": 2048,
+        "verdict": "PASS",
+        "output_head": "{\"intent\": \"coding\", \"agent_type\": \"coding_agent\", \"is_multi_step\": false, \"confidence\": 0.9}"
+      },
+      {
+        "ratio": 0.55,
+        "utterance": "what's the weather in chennai today?",
+        "prompt_tokens": 2049,
+        "verdict": "PASS",
+        "output_head": "{\"intent\": \"weather\", \"agent_type\": \"system\", \"is_multi_step\": false, \"confidence\": 0.9}"
+      },
+      {
+        "ratio": 0.55,
+        "utterance": "look up the latest mlx release notes",
+        "prompt_tokens": 2047,
+        "verdict": "PASS",
+        "output_head": "{\"intent\": \"search\", \"agent_type\": \"rag\", \"is_multi_step\": false, \"confidence\": 0.9}"
+      },
+      {
+        "ratio": 1.0,
+        "utterance": "schedule a meeting with Alex tomorrow at 3pm",
+        "prompt_tokens": 2050,
+        "verdict": "PASS",
+        "output_head": "{\"intent\": \"calendar\", \"agent_type\": \"calendar\", \"is_multi_step\": false, \"confidence\": 1}"
+      },
+      {
+        "ratio": 1.0,
+        "utterance": "summarize my inbox from today",
+        "prompt_tokens": 2047,
+        "verdict": "PASS",
+        "output_head": "{\"intent\": \"communication\", \"agent_type\": \"email\", \"is_multi_step\": false, \"confidence\": 0.9}"
+      },
+      {
+        "ratio": 1.0,
+        "utterance": "write a python function to parse csv files",
+        "prompt_tokens": 2048,
+        "verdict": "PASS",
+        "output_head": "{\"intent\": \"coding\", \"agent_type\": \"coding_agent\", \"is_multi_step\": false, \"confidence\": 0.9}"
+      },
+      {
+        "ratio": 1.0,
+        "utterance": "what's the weather in chennai today?",
+        "prompt_tokens": 2049,
+        "verdict": "PASS",
+        "output_head": "{\"intent\": \"weather\", \"agent_type\": \"system\", \"is_multi_step\": false, \"confidence\": 0.9}"
+      },
+      {
+        "ratio": 1.0,
+        "utterance": "look up the latest mlx release notes",
+        "prompt_tokens": 2047,
+        "verdict": "PASS",
+        "output_head": "{\"intent\": \"search\", \"agent_type\": \"rag\", \"is_multi_step\": false, \"confidence\": 0.9}"
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "run_id": "20260611T210520Z-4a8f4a",
+  "created_utc": "2026-06-11T21:05:20.056184+00:00",
+  "spike": "0004-tier3-moe",
+  "summary": {
+    "stack": "mlx",
+    "model": "mlx-community/Qwen3.6-35B-A3B-4bit",
+    "decode_tps_mean": 104.4,
+    "decode_tps_runs": [
+      107.1,
+      102.3,
+      103.6
+    ],
+    "wall_s_mean": 2.66,
+    "footprint_gb": 19.7,
+    "memory_method": "mx.get_peak_memory()"
+  }
+}

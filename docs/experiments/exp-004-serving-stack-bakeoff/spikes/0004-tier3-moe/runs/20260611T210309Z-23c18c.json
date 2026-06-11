@@ -1,0 +1,18 @@
+{
+  "run_id": "20260611T210309Z-23c18c",
+  "created_utc": "2026-06-11T21:03:09.546373+00:00",
+  "spike": "0004-tier3-moe",
+  "summary": {
+    "stack": "ollama",
+    "model": "qwen3.6:35b-a3b",
+    "decode_tps_mean": 75.2,
+    "decode_tps_runs": [
+      75.1,
+      75.3,
+      75.4
+    ],
+    "wall_s_mean": 3.67,
+    "footprint_gb": 23.8,
+    "memory_method": "ollama ps (model+kv resident)"
+  }
+}
