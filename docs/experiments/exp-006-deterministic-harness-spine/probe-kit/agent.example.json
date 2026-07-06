@@ -1,0 +1,12 @@
+{
+  "//": "Describe how to reach YOUR local agent. Copy to agent.json and edit.",
+  "url": "http://localhost:8000/chat",
+  "transport": "requests",
+  "//transport": "'requests' (needs `pip install requests`) or 'curl' (no deps)",
+  "headers": { "content-type": "application/json" },
+  "body_template": { "message": "{{MSG}}", "session_id": "probe-kit" },
+  "//body_template": "{{MSG}} is replaced with the probe text. Match your API's schema.",
+  "response_json_path": "response",
+  "//response_json_path": "dotted path to the reply text in the JSON, e.g. 'response' or 'choices.0.message.content'. Omit if the endpoint returns raw text.",
+  "timeout": 120
+}

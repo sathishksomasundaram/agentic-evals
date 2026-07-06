@@ -1,0 +1,44 @@
+name: exp02-routing
+description: Routing breadth — phrasing variants + negative cases (default flags).
+env:
+  IRIS_DUES_INTERCEPT: "1"
+  IRIS_PORTFOLIO_INTERCEPT: "1"
+  IRIS_ON_DEMAND_BRIEF: "1"
+scenarios:
+  - name: time-plain
+    message: "what time is it?"
+    expect: { handler: time_date, response_contains: ["Current local time"] }
+  - name: time-casual
+    message: "time?"
+    expect: { handler: time_date }
+  - name: time-embedded
+    message: "hey iris, could you tell me what time it is right now please"
+    expect: { handler: time_date }
+  - name: date-variant
+    message: "todays date?"
+    expect: { handler: time_date }
+  - name: reminder-basic
+    message: "remind me tomorrow at 5pm to call the bank"
+    expect: { handler: reminder_creation, sources_exclude: [research], no_pii_leak: true }
+  - name: reminder-relative
+    message: "set a reminder in 2 hours to check the oven"
+    expect: { handler: reminder_creation }
+  - name: dues-question
+    message: "any insurance dues this week?"
+    expect: { handler: dues_request, sources_exclude: [research], no_pii_leak: true }
+  - name: portfolio-question
+    message: "show my portfolio"
+    expect: { handler: portfolio_request, sources_exclude: [research], no_pii_leak: true }
+  - name: brief-question
+    message: "give me my brief"
+    expect: { handler: brief_request, sources_exclude: [research] }
+  # negative cases — must NOT be swallowed by a lookalike intercept
+  - name: neg-time-signature
+    message: "what time signature is Take Five written in?"
+    expect: { handler: "" }
+  - name: neg-portfolio-action
+    message: "delete my portfolio tracking"
+    expect: { handler: "" }
+  - name: neg-dues-action
+    message: "cancel my insurance dues autopay"
+    expect: { handler: "" }

@@ -1,0 +1,16 @@
+// Routing-paraphrase battery — natural phrasings that SHOULD hit a fast, grounded path.
+// A good spine answers all of these deterministically (~0.1s, same value every repeat).
+// The runner sends each `repeats` times; time-checked probes flag stochastic fallback.
+{"name": "time-direct", "capability": "clock", "message": "what time is it?", "grounding_check": "time"}
+{"name": "time-terse", "capability": "clock", "message": "time?", "grounding_check": "time"}
+{"name": "time-polite-leadin", "capability": "clock", "message": "hey, could you tell me what time it is right now please", "grounding_check": "time"}
+{"name": "date-direct", "capability": "calendar-read", "message": "what's today's date?"}
+{"name": "date-casual", "capability": "calendar-read", "message": "todays date?"}
+{"name": "day-of-week", "capability": "calendar-read", "message": "what day is it today?"}
+{"name": "reminder-absolute", "capability": "reminder-create", "message": "remind me tomorrow at 5pm to call the bank"}
+{"name": "reminder-relative", "capability": "reminder-create", "message": "set a reminder in 2 hours to check the oven", "grounding_check": "time"}
+{"name": "reminder-relative-min", "capability": "reminder-create", "message": "remind me in 45 minutes to stretch", "grounding_check": "time"}
+// Negative cases — an over-eager spine should NOT swallow these into a lookalike fast path.
+{"name": "neg-time-signature", "capability": "should-not-intercept", "message": "what time signature is Take Five written in?"}
+{"name": "neg-portfolio-action", "capability": "should-not-intercept", "message": "delete my saved tracking list"}
+{"name": "neg-dues-action", "capability": "should-not-intercept", "message": "cancel my autopay setup"}

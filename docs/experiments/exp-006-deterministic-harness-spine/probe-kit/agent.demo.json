@@ -1,0 +1,8 @@
+{
+  "url": "http://127.0.0.1:8099/chat",
+  "transport": "curl",
+  "headers": { "content-type": "application/json" },
+  "body_template": { "message": "{{MSG}}" },
+  "response_json_path": "response",
+  "timeout": 20
+}
