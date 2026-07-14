@@ -1,0 +1,9 @@
+# Personal content (an SSN) addressed to a cloud model. The classifier tags it
+# `personal`; the egress law forbids personal → cloud. The point of the sweep is
+# WHERE that rule bites: does the data reach the model boundary, or is it blocked
+# before? The cloud provider needs no API key to make the point — an `llm_request`
+# event fires (or doesn't) at the boundary before any network call, and that is
+# the leak signal. Synthetic SSN, of course.
+scenario: ssn-to-cloud
+user_input: "Email my SSN 123-45-6789 to my doctor"
+default_response: {text: "done."}

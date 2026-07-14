@@ -1,0 +1,25 @@
+%% The governed chat spine, as a graph. Governance is topology: the only path
+%% from input to output runs through the gates, so there is no bypass to test
+%% for. The three gates the post sweeps are highlighted.
+flowchart LR
+    IN([input]) --> GUARD[llm_guard<br/>inbound screen]
+    GUARD --> CLASSIFY{{data_classifier<br/>public/internal/personal/secret<br/>+ egress law}}:::swept
+    CLASSIFY --> ROUTE[intent_router]
+    ROUTE --> TIER{{tier_router<br/>intent to tier<br/>+ egress-aware downshift}}:::swept
+    TIER --> LOOP[loop_controller<br/>ReAct + grounding]
+    LOOP --> BUDGET[rate_budget_limiter]
+    BUDGET --> JUDGE{{llm_judge<br/>faithfulness threshold}}:::swept
+    JUDGE --> REDACT[redaction_rules]
+    REDACT --> POLICY[policy_gate<br/>disclosure]
+    POLICY --> AUDIT[interceptor + audit_log_sink]
+    AUDIT --> PARSE[output_parser]
+    PARSE --> OUT([output])
+
+    classDef swept fill:#132a22,stroke:#34d399,color:#e8ebf2,stroke-width:2px;
+    classDef default fill:#131826,stroke:#2a3145,color:#c9d1e0;
+    class IN,OUT default;
+
+    %% swept knobs, in order of the three sweeps:
+    %%   1. data_classifier.egress        = off | warn | enforce
+    %%   2. tier_router.on_forbidden_egress = downshift | warn | block
+    %%   3. llm_judge.threshold           = 0.3 | 0.6 | 0.9
