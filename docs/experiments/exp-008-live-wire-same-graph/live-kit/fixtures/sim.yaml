@@ -1,0 +1,22 @@
+# The digest is computed deterministically by the tool: three messages, today.
+# The model narrates them accurately — right count, right senders — so both the
+# groundedness and faithfulness judges pass and the summary ships clean. The
+# facts came from the tool; the model only phrased them.
+scenario: digest-faithful
+user_input: "Summarize my inbox today"
+
+tools:
+  email.search:
+    - match: {query_contains: "inbox"}
+      result:
+        - {id: m1, subject: "Invoice #4021 due Friday", snippet: "Payment of $2,400 is due.", source: email.search}
+        - {id: m2, subject: "Standup moved to 10am", snippet: "The daily standup is now at 10am.", source: email.search}
+        - {id: m3, subject: "Welcome to the beta", snippet: "Thanks for joining the beta program.", source: email.search}
+
+llm:
+  - match: {contains: "inbox"}
+    respond: {text: "You have 3 new messages today: an invoice due Friday, a standup moved to 10am, and a beta welcome."}
+
+judge:
+  - match: {contains: "3 new messages"}
+    scores: {groundedness: 0.92, faithfulness: 0.9}

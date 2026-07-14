@@ -1,0 +1,44 @@
+The same email_digest graph, run twice — one binding changed (mode: sim -> real).
+
+  SIM (fixture twin)       LIVE (real MCP mail server)
+  --------------------     ----------------------------
+  run_started  deterministic=True   run_started  deterministic=False   <-- the one word that flips
+  node_started             node_started
+  input_received           input_received
+  node_finished            node_finished
+  node_started             node_started
+  tool_called              tool_called
+  tool_result  count=3 (scripted)   tool_result  count=4 (from the live inbox)   <-- real rows over the wire
+  node_finished            node_finished
+  node_started             node_started
+  context_snapshot         context_snapshot
+  node_finished            node_finished
+  node_started             node_started
+  prompt_assembled         prompt_assembled
+  node_finished            node_finished
+  node_started             node_started
+  llm_request              llm_request
+  llm_response             llm_response
+  node_finished            node_finished
+  node_started             node_started
+  judge_signal             judge_signal
+  judge_signal             judge_signal
+  judge_chain_finished     judge_chain_finished
+  node_finished            node_finished
+  node_started             node_started
+  audit_flushed            audit_flushed
+  node_finished            node_finished
+  node_started             node_started
+  node_finished            node_finished
+  node_started             node_started
+  node_finished            node_finished
+  run_finished             run_finished
+
+Only two lines differ: the tool's rows (real vs scripted) and one word (deterministic). Every governance node in between did the same thing.
+
+  [ok] both runs completed
+  [ok] event sequence identical
+  [ok] determinism flips true -> false
+  [ok] live tool rows came from the server
+
+Same graph, sim and live, governance intact. Reproducible where it can be, honest where it can't.
