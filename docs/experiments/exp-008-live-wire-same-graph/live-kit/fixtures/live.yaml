@@ -1,0 +1,12 @@
+# The LIVE run's scripted narrative + judge scores. The TOOL is real (it calls
+# the MCP mail server over stdio and returns real inbox rows); the model is kept
+# on the sim provider in BOTH runs so the tool is the only variable — the whole
+# point is to isolate "flip the tool to real" and watch what the trace does.
+scenario: live
+user_input: "Summarize my inbox today"
+llm:
+  - match: {contains: "inbox"}
+    respond: {text: "You have 4 new messages today."}
+judge:
+  - match: {contains: "4 new"}
+    scores: {groundedness: 0.9, faithfulness: 0.9}
