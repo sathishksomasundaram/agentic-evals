@@ -1,0 +1,17 @@
+# Tier lab: the egress-aware downshift (D44 x D45). "worth" routes this to the
+# `market` intent, whose tier is cloud_large — but the classifier tagged the
+# content `personal` (an email address), and personal content may not reach a
+# cloud tier. So the tier router DOWNSHIFTS to local_fast before the loop ever
+# runs: watch for tier_selected{tier: cloud_large} ... no — watch for
+# tier_downshifted{from: cloud_large, to: local_fast, reason: egress_personal},
+# then the loop runs local and the answer ships. Routing enforced the egress
+# law proactively, instead of waiting for the boundary to block.
+scenario: spine-personal-downshift
+user_input: "What's my portfolio worth? My advisor wrote from advisor@fidelity.com yesterday."
+
+react:
+  - match: {contains: "portfolio"}
+    respond: {text: "I don't have your live portfolio in my tools yet — check your advisor's latest note for the current figure."}
+
+default_response: {text: "I could not find that."}
+default_judge_scores: {safety: 0.95, faithfulness: 0.8, groundedness: 0.8}

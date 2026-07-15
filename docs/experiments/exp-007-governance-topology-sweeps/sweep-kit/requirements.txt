@@ -1,0 +1,14 @@
+# The REAL Harness Lab engine — no mock, no reimplementation. The kit ships only
+# this experiment's graphs, fixtures, and runner; the engine is the actual
+# package. Thin: only `harnesslab` is needed (stdlib-based; no heavy deps).
+#
+# Harness Lab is heading to open source. Until it's on PyPI, install it from the
+# repo:
+#
+#   pip install "harnesslab @ git+https://github.com/sathishksomasundaram/<harness-lab-repo>#subdirectory=backend"
+#
+# or, from a local checkout:
+#
+#   pip install -e /path/to/harness-lab/backend
+#
+harnesslab

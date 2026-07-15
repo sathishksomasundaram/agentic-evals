@@ -1,0 +1,27 @@
+Governance-topology sweeps — real Harness Lab engine, deterministic runs.
+
+Sweep 1 — egress mode: personal data -> a cloud model
+  knob: data_classifier.egress
+  value     reached_model           egress_denied           outcome               
+  --------------------------------------------------------------------------------
+  off       yes                     0                       LEAKS                 
+  warn      yes                     1                       LEAKS                 
+  enforce   no                      1                       blocked before egress 
+
+Sweep 2 — forbidden-tier fallback: a personal request
+  knob: tier_router.on_forbidden_egress
+  value       status                  downshifted             outcome               
+  ----------------------------------------------------------------------------------
+  downshift   completed               yes                     answered (routed local)
+  warn        blocked                 no                      blocked               
+  block       blocked                 no                      blocked               
+
+Sweep 3 — curation judge threshold: a confidently-wrong answer
+  knob: llm_judge.threshold
+  value status                  outcome               
+  ----------------------------------------------------
+  0.3   completed               SHIPPED the hallucination
+  0.6   blocked                 caught + blocked      
+  0.9   blocked                 caught + blocked      
+
+All sweeps matched the expected table. Reproducible, or it didn't happen.
