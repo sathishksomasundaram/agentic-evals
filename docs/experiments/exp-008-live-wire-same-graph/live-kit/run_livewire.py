@@ -19,6 +19,13 @@ full payloads, and says so. It asserts exactly that — event-type sequences
 identical, both runs complete, determinism flips, live rows actually arrived —
 and exits non-zero otherwise.
 
+Since the engine published its determinism contract (canonical trace digests,
+`c1:sha256:...`), the kit also demonstrates it: the sim run executes TWICE and
+the two digests must be string-equal — reproduction demonstrated, not assumed.
+The live run's digest is printed too (it names the trace), but it is never
+asserted stable, because the run says `deterministic: false` and the kit
+believes it.
+
 The mail source is a mock MCP server (synthetic inbox) shipped with Harness Lab
 as `harnesslab.mcp_email_mock` — a stand-in for a real IMAP/Gmail MCP bridge, so
 the whole mode:real + MCP path is exercised for real (a genuine stdio round trip)
@@ -39,6 +46,7 @@ from harnesslab import catalog
 from harnesslab.engine import execute
 from harnesslab.schema import GraphModel
 from harnesslab.sim import load_fixture
+from harnesslab.trace import trace_digest
 
 HERE = Path(__file__).resolve().parent
 MOCK_SERVER = "python3 -m harnesslab.mcp_email_mock"
@@ -115,12 +123,14 @@ def side_by_side(sim, live) -> str:
     return "\n".join(lines)
 
 
-def verdict(sim, live) -> tuple[bool, list]:
+def verdict(sim, sim2, live) -> tuple[bool, list]:
     checks = [
         ("both runs completed", sim.status == "completed" and live.status == "completed"),
         ("event-type sequence identical (same topology)", _seq(sim) == _seq(live)),
         ("determinism flips true -> false", _deterministic(sim) is True and _deterministic(live) is False),
         ("live tool rows came from the server", _tool_result(live)["count"] > 0),
+        ("sim digest reproduces run-to-run (c1 string comparison)",
+         trace_digest(sim.events) == trace_digest(sim2.events)),
     ]
     return all(ok for _, ok in checks), checks
 
@@ -131,15 +141,21 @@ def main() -> int:
     args = ap.parse_args()
 
     _publish_live_tool()
-    sim, live = _run_sim(), _run_live()
-    ok, checks = verdict(sim, live)
+    # The sim run executes twice: reproduction is demonstrated (two equal
+    # digests), not asserted from one run. The live digest names its trace but
+    # is never asserted stable — the run says deterministic: false.
+    sim, sim2, live = _run_sim(), _run_sim(), _run_live()
+    ok, checks = verdict(sim, sim2, live)
+    dsim, dlive = trace_digest(sim.events), trace_digest(live.events)
 
     if args.json:
         print(json.dumps({
             "sim": {"status": sim.status, "deterministic": _deterministic(sim),
-                    "tool_rows": _tool_result(sim)["count"], "events": _seq(sim)},
+                    "tool_rows": _tool_result(sim)["count"], "events": _seq(sim),
+                    "digest": dsim, "digest_rerun": trace_digest(sim2.events)},
             "live": {"status": live.status, "deterministic": _deterministic(live),
-                     "tool_rows": _tool_result(live)["count"], "events": _seq(live)},
+                     "tool_rows": _tool_result(live)["count"], "events": _seq(live),
+                     "digest": dlive},
             "checks": {name: ok for name, ok in checks}, "ok": ok}, indent=2))
         return 0 if ok else 1
 
@@ -148,6 +164,8 @@ def main() -> int:
     print("\nThe event topology is identical; the annotated lines show what differs — the "
           "tool's rows (real vs scripted) and one word (deterministic). Every governance "
           "node in between fired in the same place.\n")
+    print(f"  sim  digest  {dsim}   (run twice; both runs produced this string)")
+    print(f"  live digest  {dlive}   (names the trace; not asserted stable — deterministic: false)\n")
     for name, passed in checks:
         print(f"  [{'ok' if passed else 'XX'}] {name}")
     print("\n" + ("Same graph, sim and live, governance intact. Reproducible where it can be, "
