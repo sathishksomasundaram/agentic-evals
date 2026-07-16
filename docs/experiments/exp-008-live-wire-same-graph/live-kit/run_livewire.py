@@ -4,15 +4,27 @@
 Runs ONE graph (`email_digest`) twice on the REAL Harness Lab engine:
 
   * SIM  — the tool is a fixture twin (`email.search`, mode: sim).
-  * LIVE — the identical graph with ONE binding changed: the tool node points at
+  * LIVE — the identical graph TOPOLOGY with the tool node rebound: it points at
            `inbox.search_inbox` (mode: real), a tool imported from a real MCP
-           mail server that this kit speaks to over stdio.
+           mail server that this kit speaks to over stdio. To be precise about
+           what changes: the tool id, the mode flag, and the fixture that
+           scripts the (still-simulated) model. Nothing else in the graph.
 
-Then it prints the two traces side by side. The claim of the post is that only
-TWO things differ: the tool's rows are real instead of scripted, and
-`deterministic` flips true -> false. The runner asserts exactly that — the event
-sequences must be identical, both runs must complete, determinism must flip —
+Then it prints the two traces side by side. The claim of the post is that the
+EVENT TOPOLOGY holds — the ordered sequence of event types is identical, so
+every governance node fires in the same place — while the tool's rows are real
+instead of scripted and `deterministic` flips true -> false. Data-dependent
+payloads differ where the data differs; the runner compares event types, not
+full payloads, and says so. It asserts exactly that — event-type sequences
+identical, both runs complete, determinism flips, live rows actually arrived —
 and exits non-zero otherwise.
+
+Since the engine published its determinism contract (canonical trace digests,
+`c1:sha256:...`), the kit also demonstrates it: the sim run executes TWICE and
+the two digests must be string-equal — reproduction demonstrated, not assumed.
+The live run's digest is printed too (it names the trace), but it is never
+asserted stable, because the run says `deterministic: false` and the kit
+believes it.
 
 The mail source is a mock MCP server (synthetic inbox) shipped with Harness Lab
 as `harnesslab.mcp_email_mock` — a stand-in for a real IMAP/Gmail MCP bridge, so
@@ -34,6 +46,7 @@ from harnesslab import catalog
 from harnesslab.engine import execute
 from harnesslab.schema import GraphModel
 from harnesslab.sim import load_fixture
+from harnesslab.trace import trace_digest
 
 HERE = Path(__file__).resolve().parent
 MOCK_SERVER = "python3 -m harnesslab.mcp_email_mock"
@@ -66,7 +79,7 @@ def _run_live():
     g = GraphModel.model_validate(_graph())
     tool = next(n for n in g.nodes if n.type == "tool")
     tool.config["tool"] = "inbox.search_inbox"   # the imported live tool
-    tool.config["mode"] = "real"                 # the ONE binding that changes
+    tool.config["mode"] = "real"                 # the rebinding: id + mode; the topology is untouched
     return execute(g, load_fixture(str(HERE / "fixtures" / "live.yaml")))
 
 
@@ -110,12 +123,14 @@ def side_by_side(sim, live) -> str:
     return "\n".join(lines)
 
 
-def verdict(sim, live) -> tuple[bool, list]:
+def verdict(sim, sim2, live) -> tuple[bool, list]:
     checks = [
         ("both runs completed", sim.status == "completed" and live.status == "completed"),
-        ("event sequence identical", _seq(sim) == _seq(live)),
+        ("event-type sequence identical (same topology)", _seq(sim) == _seq(live)),
         ("determinism flips true -> false", _deterministic(sim) is True and _deterministic(live) is False),
         ("live tool rows came from the server", _tool_result(live)["count"] > 0),
+        ("sim digest reproduces run-to-run (c1 string comparison)",
+         trace_digest(sim.events) == trace_digest(sim2.events)),
     ]
     return all(ok for _, ok in checks), checks
 
@@ -126,22 +141,31 @@ def main() -> int:
     args = ap.parse_args()
 
     _publish_live_tool()
-    sim, live = _run_sim(), _run_live()
-    ok, checks = verdict(sim, live)
+    # The sim run executes twice: reproduction is demonstrated (two equal
+    # digests), not asserted from one run. The live digest names its trace but
+    # is never asserted stable — the run says deterministic: false.
+    sim, sim2, live = _run_sim(), _run_sim(), _run_live()
+    ok, checks = verdict(sim, sim2, live)
+    dsim, dlive = trace_digest(sim.events), trace_digest(live.events)
 
     if args.json:
         print(json.dumps({
             "sim": {"status": sim.status, "deterministic": _deterministic(sim),
-                    "tool_rows": _tool_result(sim)["count"], "events": _seq(sim)},
+                    "tool_rows": _tool_result(sim)["count"], "events": _seq(sim),
+                    "digest": dsim, "digest_rerun": trace_digest(sim2.events)},
             "live": {"status": live.status, "deterministic": _deterministic(live),
-                     "tool_rows": _tool_result(live)["count"], "events": _seq(live)},
+                     "tool_rows": _tool_result(live)["count"], "events": _seq(live),
+                     "digest": dlive},
             "checks": {name: ok for name, ok in checks}, "ok": ok}, indent=2))
         return 0 if ok else 1
 
-    print("The same email_digest graph, run twice — one binding changed (mode: sim -> real).\n")
+    print("The same email_digest graph, run twice — the tool rebound (mode: sim -> real).\n")
     print(side_by_side(sim, live))
-    print("\nOnly two lines differ: the tool's rows (real vs scripted) and one word "
-          "(deterministic). Every governance node in between did the same thing.\n")
+    print("\nThe event topology is identical; the annotated lines show what differs — the "
+          "tool's rows (real vs scripted) and one word (deterministic). Every governance "
+          "node in between fired in the same place.\n")
+    print(f"  sim  digest  {dsim}   (run twice; both runs produced this string)")
+    print(f"  live digest  {dlive}   (names the trace; not asserted stable — deterministic: false)\n")
     for name, passed in checks:
         print(f"  [{'ok' if passed else 'XX'}] {name}")
     print("\n" + ("Same graph, sim and live, governance intact. Reproducible where it can be, "
