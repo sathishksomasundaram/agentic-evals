@@ -1,6 +1,7 @@
 # The REAL Harness Lab engine + the MCP client transport (for the live stdio
 # round trip to the mail server). No mock engine; the mail SOURCE is a synthetic
 # MCP server shipped with harnesslab (harnesslab.mcp_email_mock) — a stand-in for
-# a real IMAP/Gmail MCP bridge. Harness Lab is heading to open source; until it's
-# on PyPI, install from the repo (see the sweep kit's requirements.txt).
-harnesslab[mcp]
+# a real IMAP/Gmail MCP bridge. Harness Lab is open source (Apache-2.0,
+# https://github.com/sathishksomasundaram/harnesslab); until the PyPI release
+# lands, this line installs the engine straight from the repo.
+harnesslab[mcp] @ git+https://github.com/sathishksomasundaram/harnesslab.git#subdirectory=backend

@@ -4,14 +4,19 @@
 Runs ONE graph (`email_digest`) twice on the REAL Harness Lab engine:
 
   * SIM  — the tool is a fixture twin (`email.search`, mode: sim).
-  * LIVE — the identical graph with ONE binding changed: the tool node points at
+  * LIVE — the identical graph TOPOLOGY with the tool node rebound: it points at
            `inbox.search_inbox` (mode: real), a tool imported from a real MCP
-           mail server that this kit speaks to over stdio.
+           mail server that this kit speaks to over stdio. To be precise about
+           what changes: the tool id, the mode flag, and the fixture that
+           scripts the (still-simulated) model. Nothing else in the graph.
 
-Then it prints the two traces side by side. The claim of the post is that only
-TWO things differ: the tool's rows are real instead of scripted, and
-`deterministic` flips true -> false. The runner asserts exactly that — the event
-sequences must be identical, both runs must complete, determinism must flip —
+Then it prints the two traces side by side. The claim of the post is that the
+EVENT TOPOLOGY holds — the ordered sequence of event types is identical, so
+every governance node fires in the same place — while the tool's rows are real
+instead of scripted and `deterministic` flips true -> false. Data-dependent
+payloads differ where the data differs; the runner compares event types, not
+full payloads, and says so. It asserts exactly that — event-type sequences
+identical, both runs complete, determinism flips, live rows actually arrived —
 and exits non-zero otherwise.
 
 The mail source is a mock MCP server (synthetic inbox) shipped with Harness Lab
@@ -66,7 +71,7 @@ def _run_live():
     g = GraphModel.model_validate(_graph())
     tool = next(n for n in g.nodes if n.type == "tool")
     tool.config["tool"] = "inbox.search_inbox"   # the imported live tool
-    tool.config["mode"] = "real"                 # the ONE binding that changes
+    tool.config["mode"] = "real"                 # the rebinding: id + mode; the topology is untouched
     return execute(g, load_fixture(str(HERE / "fixtures" / "live.yaml")))
 
 
@@ -113,7 +118,7 @@ def side_by_side(sim, live) -> str:
 def verdict(sim, live) -> tuple[bool, list]:
     checks = [
         ("both runs completed", sim.status == "completed" and live.status == "completed"),
-        ("event sequence identical", _seq(sim) == _seq(live)),
+        ("event-type sequence identical (same topology)", _seq(sim) == _seq(live)),
         ("determinism flips true -> false", _deterministic(sim) is True and _deterministic(live) is False),
         ("live tool rows came from the server", _tool_result(live)["count"] > 0),
     ]
@@ -138,10 +143,11 @@ def main() -> int:
             "checks": {name: ok for name, ok in checks}, "ok": ok}, indent=2))
         return 0 if ok else 1
 
-    print("The same email_digest graph, run twice — one binding changed (mode: sim -> real).\n")
+    print("The same email_digest graph, run twice — the tool rebound (mode: sim -> real).\n")
     print(side_by_side(sim, live))
-    print("\nOnly two lines differ: the tool's rows (real vs scripted) and one word "
-          "(deterministic). Every governance node in between did the same thing.\n")
+    print("\nThe event topology is identical; the annotated lines show what differs — the "
+          "tool's rows (real vs scripted) and one word (deterministic). Every governance "
+          "node in between fired in the same place.\n")
     for name, passed in checks:
         print(f"  [{'ok' if passed else 'XX'}] {name}")
     print("\n" + ("Same graph, sim and live, governance intact. Reproducible where it can be, "
